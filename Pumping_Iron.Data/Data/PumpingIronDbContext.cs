@@ -22,6 +22,6 @@
 
         public DbSet<GymParticipants> GymParticipants { get; set; } = null!;
 
-        public int MyProperty { get; set; }
+        public DbSet<Membership> Memberships { get; set; } = null!:
     }
 }
