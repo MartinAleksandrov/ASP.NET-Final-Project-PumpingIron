@@ -53,5 +53,13 @@
 
         [Required]
         public Trainer Trainer { get; set; } = null!;
+
+
+        [Required]
+        [ForeignKey(nameof(Membership))]
+        public int MembershipId { get; set; }
+
+        [Required]
+        public Membership Membership { get; set; } = null!;
     }
 }

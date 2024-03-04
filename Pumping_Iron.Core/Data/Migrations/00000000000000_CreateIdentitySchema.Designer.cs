@@ -9,7 +9,7 @@ using System;
 
 namespace Pumping_Iron.Core.Data.Migrations
 {
-    [DbContext(typeof(ApplicationDbContext))]
+    [DbContext(typeof(PumpingIronDbContext))]
     [Migration("00000000000000_CreateIdentitySchema")]
     partial class CreateIdentitySchema
     {
