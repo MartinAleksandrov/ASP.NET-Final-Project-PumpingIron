@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33801.468
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pumping _Iron", "Pumping _Iron\Pumping _Iron.csproj", "{C19ABA95-AC24-4739-BBA2-C590E51A1154}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pumping_Iron.Data", "Pumping_Iron.Data\Pumping_Iron.Data.csproj", "{510FF66A-CCF9-4832-8EAC-C28EC10E61D9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pumping_Iron.Services", "Pumping_Iron.Services\Pumping_Iron.Services.csproj", "{1FCA293E-432F-4366-B368-38B4449CC0BD}"
@@ -13,16 +11,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pumping_Iron.Infrastructure
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pumping_Iron.Common", "Pumping_Iron.Common\Pumping_Iron.Common.csproj", "{6D6F4194-E2C6-4211-8FB3-26835F8E594F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pumping_Iron.Core", "Pumping_Iron.Core\Pumping_Iron.Core.csproj", "{4E460892-AB92-443C-9F66-B78F40F60738}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C19ABA95-AC24-4739-BBA2-C590E51A1154}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C19ABA95-AC24-4739-BBA2-C590E51A1154}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C19ABA95-AC24-4739-BBA2-C590E51A1154}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C19ABA95-AC24-4739-BBA2-C590E51A1154}.Release|Any CPU.Build.0 = Release|Any CPU
 		{510FF66A-CCF9-4832-8EAC-C28EC10E61D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{510FF66A-CCF9-4832-8EAC-C28EC10E61D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{510FF66A-CCF9-4832-8EAC-C28EC10E61D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -39,6 +35,10 @@ Global
 		{6D6F4194-E2C6-4211-8FB3-26835F8E594F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6D6F4194-E2C6-4211-8FB3-26835F8E594F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6D6F4194-E2C6-4211-8FB3-26835F8E594F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E460892-AB92-443C-9F66-B78F40F60738}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E460892-AB92-443C-9F66-B78F40F60738}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E460892-AB92-443C-9F66-B78F40F60738}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E460892-AB92-443C-9F66-B78F40F60738}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

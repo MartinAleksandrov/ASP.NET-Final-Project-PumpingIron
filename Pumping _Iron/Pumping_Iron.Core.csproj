@@ -1,11 +1,11 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>aspnet-Pumping__Iron-47b28ce7-f281-42e1-a88b-3b69decc1d93</UserSecretsId>
-    <RootNamespace>Pumping__Iron</RootNamespace>
+    <RootNamespace>Pumping_Iron.Core</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
