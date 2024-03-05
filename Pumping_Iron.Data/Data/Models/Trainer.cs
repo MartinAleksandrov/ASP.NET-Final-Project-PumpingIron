@@ -1,6 +1,6 @@
-﻿namespace Pumping_Iron.Core.Data.Models
+﻿namespace Pumping_Iron.Data.Models
 {
-    using Pumping_Iron.Core.Data.Models.Enums;
+    using Pumping_Iron.Data.Models.Enums;
     using System.ComponentModel.DataAnnotations;
     using static Pumping_Iron.Common.EntityValidationsConstants.TrainerConstants;
 

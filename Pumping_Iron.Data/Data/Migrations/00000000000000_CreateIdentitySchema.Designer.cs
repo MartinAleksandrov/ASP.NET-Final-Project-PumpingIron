@@ -3,11 +3,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Pumping_Iron.Core.Data;
-using System;
+using Pumping_Iron.Data;
 
-namespace Pumping_Iron.Core.Data.Migrations
+namespace Pumping_Iron.Data.Data.Migrations
 {
     [DbContext(typeof(PumpingIronDbContext))]
     [Migration("00000000000000_CreateIdentitySchema")]

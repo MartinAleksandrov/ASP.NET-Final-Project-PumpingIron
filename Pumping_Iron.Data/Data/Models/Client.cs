@@ -1,8 +1,8 @@
-﻿namespace Pumping_Iron.Core.Data.Models
+﻿namespace Pumping_Iron.Data.Models
 {
     using static Pumping_Iron.Common.EntityValidationsConstants.ClientConstants;
     using System.ComponentModel.DataAnnotations;
-    using Pumping_Iron.Core.Data.Models.Enums;
+    using Pumping_Iron.Data.Models.Enums;
     using System.ComponentModel.DataAnnotations.Schema;
 
     public class Client
@@ -49,7 +49,7 @@
 
         [Required]
         [ForeignKey(nameof(Trainer))]
-        public int TrainerId { get; set; }
+        public Guid TrainerId { get; set; }
 
         [Required]
         public Trainer Trainer { get; set; } = null!;

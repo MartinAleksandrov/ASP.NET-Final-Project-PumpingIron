@@ -1,4 +1,4 @@
-﻿namespace Pumping_Iron.Core.Data.Models
+﻿namespace Pumping_Iron.Data.Models
 {
     using Microsoft.AspNetCore.Identity;
     using System.ComponentModel.DataAnnotations;

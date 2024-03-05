@@ -1,4 +1,4 @@
-﻿namespace Pumping_Iron.Core.Data.Models
+﻿namespace Pumping_Iron.Data.Models
 {
     using System.ComponentModel.DataAnnotations;
 
@@ -6,12 +6,11 @@
     {
         public Membership() 
         {
-            MembershipId = Guid.NewGuid();
             Members = new List<Client>();
         }
 
         [Key]
-        public Guid MembershipId { get; set; }
+        public int MembershipId { get; set; }
 
 
         [Required]

@@ -1,4 +1,4 @@
-﻿namespace Pumping_Iron.Core.Data.Models
+﻿namespace Pumping_Iron.Data.Models
 {
     using static Pumping_Iron.Common.EntityValidationsConstants.ProgramConstants;
     using System.ComponentModel.DataAnnotations;

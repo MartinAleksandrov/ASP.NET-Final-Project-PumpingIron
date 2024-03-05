@@ -1,16 +1,28 @@
-﻿namespace Pumping_Iron.Core.Data
+﻿namespace Pumping_Iron.Data.Data
 {
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
-    using Pumping_Iron.Core.Data.Models;
+    using Pumping_Iron.Data.Models;
 
     public class PumpingIronDbContext : IdentityDbContext
     {
+      
+        public PumpingIronDbContext() 
+        {
+
+        }
+
         public PumpingIronDbContext(DbContextOptions<PumpingIronDbContext> options)
             : base(options)
         {
         }
+       
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.Entity<GymParticipants>().HasKey(gp => new { gp.TrainingProgramId, gp.ParticipantId });
 
+            base.OnModelCreating(builder);
+        }
 
         public DbSet<Trainer> Trainers { get; set; } = null!;
 
@@ -22,6 +34,6 @@
 
         public DbSet<GymParticipants> GymParticipants { get; set; } = null!;
 
-        public DbSet<Membership> Memberships { get; set; } = null!:
+        public DbSet<Membership> Memberships { get; set; } = null!;
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace Pumping_Iron.Core.Data.Models.Enums
+﻿namespace Pumping_Iron.Data.Models.Enums
 {
     public enum Gender
     {
