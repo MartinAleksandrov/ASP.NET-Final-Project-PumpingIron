@@ -7,11 +7,11 @@
     public class GymParticipants
     {
         [Required]
-        [ForeignKey(nameof(Program))]
-        public int TrainingProgramId { get; set; }
+        [ForeignKey(nameof(Client))]
+        public int ClientId { get; set; }
 
         [Required]
-        public TrainingProgram Program { get; set; } = null!;
+        public Client Client { get; set; } = null!;
 
 
         [Required]

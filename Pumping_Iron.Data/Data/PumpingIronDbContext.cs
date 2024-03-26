@@ -19,7 +19,7 @@
        
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<GymParticipants>().HasKey(gp => new { gp.TrainingProgramId, gp.ParticipantId });
+            builder.Entity<GymParticipants>().HasKey(gp => new { gp.ClientId, gp.ParticipantId });
 
             base.OnModelCreating(builder);
         }

@@ -1,5 +1,6 @@
 ﻿namespace Pumping_Iron.Data.Models
 {
+    using Pumping_Iron.Data.Data.Models.Enums;
     using System.ComponentModel.DataAnnotations;
 
     public class Membership
@@ -17,7 +18,7 @@
         public List<Client> Members { get; set; } = null!;
 
         [Required]
-        public string Name { get; set; } = string.Empty;
+        public TypeMembership TypeMembership { get; set; }
 
         [Required]
         public DateTime StartDate { get; set; }
