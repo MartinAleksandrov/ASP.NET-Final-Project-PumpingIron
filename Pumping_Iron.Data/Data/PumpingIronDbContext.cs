@@ -1,16 +1,17 @@
 ﻿namespace Pumping_Iron.Data.Data
 {
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
     using Pumping_Iron.Data.Models;
 
-    public class PumpingIronDbContext : IdentityDbContext
+    public class PumpingIronDbContext : IdentityDbContext<IdentityUser>
     {
-      
-        public PumpingIronDbContext() 
-        {
 
-        }
+        //public PumpingIronDbContext()
+        //{
+
+        //}
 
         public PumpingIronDbContext(DbContextOptions<PumpingIronDbContext> options)
             : base(options)

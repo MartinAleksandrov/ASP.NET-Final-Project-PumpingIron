@@ -8,7 +8,7 @@
     {
         [Required]
         [ForeignKey(nameof(Client))]
-        public int ClientId { get; set; }
+        public Guid ClientId { get; set; }
 
         [Required]
         public Client Client { get; set; } = null!;
