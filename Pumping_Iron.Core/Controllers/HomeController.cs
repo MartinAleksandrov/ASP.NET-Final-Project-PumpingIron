@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Pumping_Iron.Core.Models;
-using System.Diagnostics;
-
-namespace Pumping_Iron.Core.Controllers
+﻿namespace Pumping_Iron.Core.Controllers
 {
+    using Microsoft.AspNetCore.Mvc;
+    using Pumping_Iron.Core.ViewModels;
+    using System.Diagnostics;
+
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
