@@ -29,6 +29,9 @@
         [Required]
         public Gender Gender { get; set; }
 
+        [Required]
+        [MaxLength(ImageUrlMaxLength)]
+        public string ImageUrl { get; set; } = null!;
 
         public ICollection<Client> Clients { get; set; }
 

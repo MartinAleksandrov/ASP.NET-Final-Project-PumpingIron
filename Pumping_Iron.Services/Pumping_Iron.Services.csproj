@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Pumping_Iron.Core\Pumping_Iron.Core.csproj" />
+  </ItemGroup>
+
 </Project>

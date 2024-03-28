@@ -1,4 +1,4 @@
-namespace Pumping_Iron.Core.Models
+namespace Pumping_Iron.Core.ViewModels
 {
     public class ErrorViewModel
     {
