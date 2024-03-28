@@ -2,7 +2,7 @@
 
 namespace Pumping_Iron.Core.Controllers
 {
-    public class CoachController : Controller
+    public class TrainerController : Controller
     {
         public IActionResult Index()
         {
