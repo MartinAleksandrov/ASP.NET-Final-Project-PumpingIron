@@ -22,6 +22,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Pumping_Iron.Common\Pumping_Iron.Common.csproj" />
     <ProjectReference Include="..\Pumping_Iron.Data\Pumping_Iron.Data.csproj" />
+    <ProjectReference Include="..\Pumping_Iron.Services\Pumping_Iron.Services.csproj" />
   </ItemGroup>
 
 </Project>

@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Pumping_Iron.Core\Pumping_Iron.Core.csproj" />
+    <ProjectReference Include="..\Pumping_Iron.Data\Pumping_Iron.Data.csproj" />
   </ItemGroup>
 
 </Project>

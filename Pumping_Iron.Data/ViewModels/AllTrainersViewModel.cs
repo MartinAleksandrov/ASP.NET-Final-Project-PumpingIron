@@ -1,4 +1,4 @@
-﻿namespace Pumping_Iron.Core.ViewModels
+﻿namespace Pumping_Iron.Data.ViewModels
 {
     public class AllTrainersViewModel
     {

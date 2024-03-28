@@ -3,6 +3,9 @@ namespace Pumping_Iron.Core
     using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
     using Pumping_Iron.Data.Data;
+    using Pumping_Iron.Services;
+    using Pumping_Iron.Services.Interfaces;
+
     public class Program
     {
         public static void Main(string[] args)
@@ -28,6 +31,8 @@ namespace Pumping_Iron.Core
             })
                 .AddEntityFrameworkStores<PumpingIronDbContext>();
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddScoped<ITrainerService, TrainerService>();
 
             var app = builder.Build();
 

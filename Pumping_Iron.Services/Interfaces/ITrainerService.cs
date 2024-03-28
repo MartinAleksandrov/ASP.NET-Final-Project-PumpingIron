@@ -1,6 +1,6 @@
 ﻿namespace Pumping_Iron.Services.Interfaces
 {
-    using Pumping_Iron.Core.ViewModels;
+    using Pumping_Iron.Data.ViewModels;
 
     public interface ITrainerService
     {

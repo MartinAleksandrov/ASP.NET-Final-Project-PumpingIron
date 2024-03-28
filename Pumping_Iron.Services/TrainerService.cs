@@ -1,7 +1,7 @@
 ﻿namespace Pumping_Iron.Services
 {
     using Microsoft.EntityFrameworkCore;
-    using Pumping_Iron.Core.ViewModels;
+    using Pumping_Iron.Data.ViewModels;
     using Pumping_Iron.Data.Data;
     using Pumping_Iron.Services.Interfaces;
     using System.Collections.Generic;

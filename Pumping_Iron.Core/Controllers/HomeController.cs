@@ -1,7 +1,7 @@
 ﻿namespace Pumping_Iron.Core.Controllers
 {
     using Microsoft.AspNetCore.Mvc;
-    using Pumping_Iron.Core.ViewModels;
+    using Pumping_Iron.Data.ViewModels;
     using System.Diagnostics;
 
     public class HomeController : Controller
