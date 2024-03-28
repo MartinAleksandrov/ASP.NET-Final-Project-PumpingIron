@@ -2,7 +2,7 @@
 {
     using Pumping_Iron.Core.ViewModels;
 
-    public interface ITrainingProgramService
+    public interface ITrainerService
     {
         Task<IEnumerable<AllTrainersViewModel>> AllTrainersAsync();
     }
