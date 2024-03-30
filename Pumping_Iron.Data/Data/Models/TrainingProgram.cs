@@ -27,6 +27,9 @@
         [MaxLength(MaxDuration)]
         public int Duration { get; set; }
 
+        [Required]
+        [MaxLength(ImageUrlMaxLength)]
+        public string ImageUrl { get; set; } = null!;
 
         public ICollection<Client> Clients { get; set; }
     }
