@@ -1,12 +1,23 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-namespace Pumping_Iron.Core.Controllers
+﻿namespace Pumping_Iron.Core.Controllers
 {
+    using Microsoft.AspNetCore.Mvc;
+    using Pumping_Iron.Services.Interfaces;
+
     public class DietController : Controller
     {
-        public IActionResult Index()
+        private readonly IDietService dietService;
+
+        public DietController(IDietService service)
         {
-            return View();
+            dietService = service;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> AllDiets()
+        {
+            var allDiets = await dietService.AllDietsAsync();
+
+            return View(allDiets);
         }
     }
 }

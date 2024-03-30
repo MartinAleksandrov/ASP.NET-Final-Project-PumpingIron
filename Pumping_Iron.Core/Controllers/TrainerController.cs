@@ -12,6 +12,7 @@
             trainerService = service;
         }
 
+        [HttpGet]
         public async Task<IActionResult> AllTrainers()
         {
             var allTrainers = await trainerService.AllTrainersAsync();

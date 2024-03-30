@@ -1,0 +1,29 @@
+﻿@model IEnumerable<AllDietsViewModel>
+@{
+    ViewBag.Title = "All Diets";
+}
+
+<div class="container mt-5">
+    <div class="row">
+        @foreach (var diet in Model)
+        {
+            <div class="col-md-6 mb-4">
+                <div class="card shadow h-100">
+                    <img class="card-img-top" src="@diet.ImageUrl" alt="Diet Image">
+                    <div class="card-body">
+                        <h5 class="card-title">@diet.Name</h5>
+                        <p class="card-text">@diet.Description</p>
+                    </div>
+                    <div class="card-footer">
+                        <form asp-controller="Diet" asp-action="Details" asp-route-id="@diet.Id">
+                            <button type="submit" class="btn btn-block btn-primary">View Details</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<!-- Reference the CSS file -->
+<link rel="stylesheet" href="~/css/allDiets.css">
