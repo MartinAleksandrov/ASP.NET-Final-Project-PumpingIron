@@ -1,11 +1,23 @@
 ﻿namespace Pumping_Iron.Core.Controllers
 {
     using Microsoft.AspNetCore.Mvc;
+    using Pumping_Iron.Services.Interfaces;
+
     public class TrainingProgramController : Controller
     {
-        public IActionResult Index()
+        private readonly ITrainingProgramService programService;
+
+        public TrainingProgramController(ITrainingProgramService service)
         {
-            return View();
+            programService = service;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> AllTrainingPrograms()
+        {
+            var allTrainingPrograms = await programService.AllTrainingProgramsAsync();
+
+            return View(allTrainingPrograms);
         }
     }
 }

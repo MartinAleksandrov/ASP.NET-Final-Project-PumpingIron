@@ -32,6 +32,8 @@
 
             public const int MaxDuration = 240;
             public const int MinDuration = 30;
+
+            public const int ImageUrlMaxLength = 255;
         }
 
         public static class DietConstants

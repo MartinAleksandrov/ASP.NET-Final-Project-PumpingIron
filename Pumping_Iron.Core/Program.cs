@@ -34,7 +34,7 @@ namespace Pumping_Iron.Core
 
             builder.Services.AddScoped<ITrainerService, TrainerService>();
             builder.Services.AddScoped<IDietService, DietService>();
-
+            builder.Services.AddScoped<ITrainingProgramService, TrainingProgramService>();
 
             var app = builder.Build();
 
