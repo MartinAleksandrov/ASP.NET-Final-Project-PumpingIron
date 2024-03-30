@@ -1,7 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-namespace Pumping_Iron.Core.Controllers
+﻿namespace Pumping_Iron.Core.Controllers
 {
+    using Microsoft.AspNetCore.Mvc;
     public class TrainingProgramController : Controller
     {
         public IActionResult Index()
