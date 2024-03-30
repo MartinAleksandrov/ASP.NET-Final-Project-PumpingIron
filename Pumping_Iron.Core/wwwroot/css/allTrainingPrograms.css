@@ -1,0 +1,38 @@
+﻿.card {
+    transition: transform 0.2s;
+}
+
+    .card:hover {
+        transform: translateY(-5px);
+    }
+
+.card-img-top {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.card-title {
+    font-size: 1.25rem;
+}
+
+.card-text {
+    color: #555;
+}
+
+.card-footer {
+    background-color: #f8f9fa;
+    border-top: none;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.btn-view-details {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: #fff;
+}
+
+    .btn-view-details:hover {
+        background-color: #0056b3;
+        border-color: #0056b3;
+    }
