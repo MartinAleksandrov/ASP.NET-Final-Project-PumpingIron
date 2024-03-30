@@ -41,6 +41,9 @@
 
             public const int DietDescriptionMinLength = 5;
             public const int DietDescriptionMaxLength = 500;
+
+            public const int ImageUrlMaxLength = 255;
+
         }
 
         public static class GymMembershipConstants
