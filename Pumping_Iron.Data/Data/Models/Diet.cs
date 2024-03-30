@@ -21,7 +21,10 @@
         [MaxLength(DietDescriptionMaxLength)]
         public string Description { get; set; } = string.Empty;
 
-        
+        [Required]
+        [MaxLength(ImageUrlMaxLength)]
+        public string ImageUrl { get; set; } = null!;
+
         public List<Client> Clients { get; set; } 
     }
 }
