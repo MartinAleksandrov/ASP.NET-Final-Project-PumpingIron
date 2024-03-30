@@ -3,6 +3,6 @@
     using Pumping_Iron.Data.ViewModels.Diet;
     public interface IDietService
     {
-        Task<IEnumerable<AllDietsViewModel>> AllDiets();
+        Task<IEnumerable<AllDietsViewModel>> AllDietsAsync();
     }
 }

@@ -15,7 +15,7 @@
         }
 
         //Shows all available diets with info about them.
-        public async Task<IEnumerable<AllDietsViewModel>> AllDiets()
+        public async Task<IEnumerable<AllDietsViewModel>> AllDietsAsync()
         {
             var allDiets = await dbContext.Diets
                 .AsNoTracking()
