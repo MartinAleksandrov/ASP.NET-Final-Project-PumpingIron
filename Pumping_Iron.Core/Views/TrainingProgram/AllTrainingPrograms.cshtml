@@ -1,0 +1,30 @@
+﻿@model IEnumerable<AllTrainingProgramsViewModel>
+@{
+    ViewBag.Title = "All Training Programs";
+}
+
+<div class="container mt-5">
+    <div class="row">
+        @foreach (var program in Model)
+        {
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100 border-0 rounded-3 shadow">
+                    <img class="card-img-top rounded-top" src="@program.ImageUrl" alt="Training Program Image">
+                    <div class="card-body">
+                        <h5 class="card-title text-primary fw-bold">@program.Name</h5>
+                        <p class="card-text">@program.Description</p>
+                        <p class="card-text">Duration: @program.Duration mins</p>
+                    </div>
+                    <div class="card-footer bg-light border-0">
+                        <form asp-controller="TrainingProgram" asp-action="AllTrainingPrograms" asp-route-id="@program.Id">
+                            <button type="submit" class="btn btn-outline-primary btn-block">View Details</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<link rel="stylesheet" href="~/css/bootstrap.min.css">
+<link rel="stylesheet" href="~/css/allTrainingPrograms.css">
