@@ -29,6 +29,9 @@
         [Required]
         public Gender Gender { get; set; }
 
+        [MaxLength(InfoMaxLength)]
+        public string? Information { get; set; }
+
         [Required]
         [MaxLength(ImageUrlMaxLength)]
         public string ImageUrl { get; set; } = null!;
