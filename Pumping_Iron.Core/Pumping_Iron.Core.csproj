@@ -25,8 +25,4 @@
     <ProjectReference Include="..\Pumping_Iron.Services\Pumping_Iron.Services.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="wwwroot\css\Trainer\" />
-  </ItemGroup>
-
 </Project>

@@ -1,0 +1,22 @@
+﻿@model AllDietsViewModel
+
+@{
+    ViewData["Title"] = "Diet Details";
+}
+
+<link rel="stylesheet" href="~/css/DietDetails.css" asp-append-version="true">
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <img src="@Model.ImageUrl" class="img-fluid diet-image" alt="Diet Image">
+        </div>
+        <div class="col-md-6">
+            <div class="diet-details">
+                <h2 class="diet-name">@Model.Name</h2>
+                <p class="diet-description">@Model.Description</p>
+                <a asp-action="AllDiets" asp-controller="Diet" class="btn btn-lg btn-success rounded-pill">Go Back</a>
+            </div>
+        </div>
+    </div>
+</div>

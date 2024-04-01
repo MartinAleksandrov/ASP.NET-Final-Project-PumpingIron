@@ -19,5 +19,18 @@
 
             return View(allDiets);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Details(int id)
+        {
+            var model = await dietService.GetDetaisByIdAsync(id);
+
+            if (model == null)
+            {
+                return BadRequest();
+            }
+
+            return View(model);
+        }
     }
 }

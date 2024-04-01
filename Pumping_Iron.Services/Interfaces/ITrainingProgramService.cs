@@ -4,5 +4,6 @@
     public interface ITrainingProgramService
     {
         Task<IEnumerable<AllTrainingProgramsViewModel>> AllTrainingProgramsAsync();
+
     }
 }
