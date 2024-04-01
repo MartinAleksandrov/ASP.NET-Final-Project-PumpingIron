@@ -5,5 +5,10 @@
     public interface ITrainerService
     {
         Task<IEnumerable<AllTrainersViewModel>> AllTrainersAsync();
+
+        Task<TrainerDetailsViewModel?> GetTrainerDetailsAsync(string id);
+
+        Task<string> FindTrainerByIdAsync(string id);
+
     }
 }

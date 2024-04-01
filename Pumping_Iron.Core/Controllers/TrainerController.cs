@@ -19,5 +19,18 @@
 
             return View(allTrainers);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Details(string id)
+        {
+            var model = await trainerService.GetTrainerDetailsAsync(id);
+
+            if (model == null)
+            {
+                return BadRequest();
+            }
+
+            return View(model);
+        }
     }
 }

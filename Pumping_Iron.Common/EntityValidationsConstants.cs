@@ -10,6 +10,9 @@
             public const int TrainerMinAge = 18;
             public const int TrainerMaxAge = 65;
 
+            public const int InfoMaxLength = 1024;
+
+
             public const int ImageUrlMaxLength = 255;
         }
 

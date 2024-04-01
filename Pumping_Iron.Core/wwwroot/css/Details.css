@@ -1,0 +1,20 @@
+﻿/* details.css */
+.big-picture {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.name {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.information {
+    font-size: 18px;
+    color: #666;
+    line-height: 1.6;
+    margin-top: 10px;
+}

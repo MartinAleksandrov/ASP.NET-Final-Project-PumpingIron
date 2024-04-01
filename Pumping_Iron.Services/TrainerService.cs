@@ -34,5 +34,47 @@
 
             return allTrainers;
         }
+
+        //Find trainer with the appropriate id if exist 
+        public async Task<string> FindTrainerByIdAsync(string id)
+        {
+
+            var trainer = await dbContext.Trainers.FirstOrDefaultAsync(t => t.TrainerId.ToString() == id);
+
+
+            //If there is no such trainer method returns empty string
+            if (trainer == null)
+            {
+                return string.Empty;
+            }
+
+            return id;
+        }
+
+        //Map trainer entity to ViewModel if such trainer exist
+        public async Task<TrainerDetailsViewModel?> GetTrainerDetailsAsync(string id)
+        {
+            var trinerId = await FindTrainerByIdAsync(id);
+
+            if (string.IsNullOrEmpty(trinerId))
+            {
+                return null;
+            }
+
+            var trainer = await dbContext
+                .Trainers
+                .Where(t => t.TrainerId.ToString() == trinerId)
+                .AsNoTracking()
+                .Select(t => new TrainerDetailsViewModel()
+                {
+                    Id = t.TrainerId.ToString(),
+                    Name = t.Name,
+                    Information = t.Information,
+                    ImageUrl = t.ImageUrl
+                })
+                .FirstOrDefaultAsync();
+
+            return trainer;
+        }
     }
 }
