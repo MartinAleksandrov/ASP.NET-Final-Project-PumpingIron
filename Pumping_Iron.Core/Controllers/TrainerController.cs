@@ -1,5 +1,6 @@
 ﻿namespace Pumping_Iron.Core.Controllers
 {
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Pumping_Iron.Services.Interfaces;
 
@@ -12,6 +13,7 @@
             trainerService = service;
         }
 
+        [Authorize(Roles = "Coach")]
         [HttpGet]
         public async Task<IActionResult> AllTrainers()
         {

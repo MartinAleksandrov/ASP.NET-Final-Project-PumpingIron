@@ -8,7 +8,7 @@ namespace Pumping_Iron.Core
 
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
@@ -29,7 +29,9 @@ namespace Pumping_Iron.Core
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequireUppercase = false;
             })
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<PumpingIronDbContext>();
+
             builder.Services.AddControllersWithViews();
 
             builder.Services.AddScoped<ITrainerService, TrainerService>();
@@ -61,7 +63,24 @@ namespace Pumping_Iron.Core
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
+
             app.MapRazorPages();
+
+            //Creating roles every time we start app
+            using (var scope = app.Services.CreateScope())
+            {
+                var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+
+                var roles = new[] { "Coach", "Client" };
+
+                foreach (var role in roles)
+                {
+                    if (!await roleManager.RoleExistsAsync(role))
+                    {
+                        await roleManager.CreateAsync(new IdentityRole(role));
+                    }
+                }
+            }
 
             app.Run();
         }

@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<IdentityUser> SignInManeger;
+@inject UserManager<IdentityUser> UserManeger;
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -24,15 +29,22 @@
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Trainer" asp-action="AllTrainers">All Trainers</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Diet" asp-action="AllDiets">All Diets</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="TrainingProgram" asp-action="AllTrainingPrograms">Training Programs</a>
-                        </li>
+                        @if (User.IsInRole("Coach"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Trainer" asp-action="AllTrainers">All Trainers</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Diet" asp-action="AllDiets">All Diets</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="TrainingProgram" asp-action="AllTrainingPrograms">Training Programs</a>
+                            </li>
+                        }
+                        else
+                        {
+                           <li>Some Text!!!</li>
+                        }
                         <li class="nav-item">
                             <partial name="_LoginPartial" />
                         </li>
