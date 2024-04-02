@@ -15,10 +15,9 @@
                         <p class="card-text">@program.Description</p>
                         <p class="card-text">Duration: @program.Duration mins</p>
                     </div>
-                    <div class="card-footer bg-light border-0">
-                        <form asp-controller="TrainingProgram" asp-action="AllTrainingPrograms" asp-route-id="@program.Id">
-                            <button type="submit" class="btn btn-outline-primary btn-block">View Details</button>
-                        </form>
+                    <div class="card-footer">
+
+                        <a href="@Url.Action("Details", "TrainingProgram", new { id = program.Id })" class="btn btn-lg btn-primary rounded-pill">Details</a>
                     </div>
                 </div>
             </div>

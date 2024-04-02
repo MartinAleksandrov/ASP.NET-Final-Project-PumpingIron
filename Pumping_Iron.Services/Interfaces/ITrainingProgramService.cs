@@ -5,5 +5,8 @@
     {
         Task<IEnumerable<AllTrainingProgramsViewModel>> AllTrainingProgramsAsync();
 
+        Task<AllTrainingProgramsViewModel?> GetProgramDetailsAsync(int id);
+
+        Task<bool> ExistByIdAsync(int id);
     }
 }

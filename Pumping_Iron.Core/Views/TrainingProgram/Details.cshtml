@@ -1,0 +1,23 @@
+﻿@model AllTrainingProgramsViewModel
+
+@{
+    ViewData["Title"] = "Training Program Details";
+}
+
+<link rel="stylesheet" href="~/css/training-program-details.css" asp-append-version="true">
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="training-program-details">
+                <h2 class="program-name">@Model.Name</h2>
+                <p class="program-description">@Model.Description</p>
+                <p class="program-duration">Duration: @Model.Duration days</p>
+                <a asp-action="AllTrainingPrograms" asp-controller="TrainingProgram" class="btn btn-lg btn-success rounded-pill">All Programs</a>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <img src="@Model.ImageUrl" class="img-fluid program-image" alt="Training Program Image">
+        </div>
+    </div>
+</div>

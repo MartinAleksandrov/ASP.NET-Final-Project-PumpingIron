@@ -19,5 +19,19 @@
 
             return View(allTrainingPrograms);
         }
+
+
+        [HttpGet]
+        public async Task<IActionResult> Details(int Id)
+        {
+            var model = await programService.GetProgramDetailsAsync(Id);
+
+            if (model == null)
+            {
+                return BadRequest();
+            }
+           
+            return View(model);
+        }
     }
 }
