@@ -29,7 +29,7 @@
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        @if (User.IsInRole("Coach"))
+                        @if (User.IsInRole("Client"))
                         {
                             <li class="nav-item">
                                 <a class="nav-link" asp-area="" asp-controller="Trainer" asp-action="AllTrainers">All Trainers</a>
@@ -41,9 +41,27 @@
                                 <a class="nav-link" asp-area="" asp-controller="TrainingProgram" asp-action="AllTrainingPrograms">Training Programs</a>
                             </li>
                         }
-                        else
+                        else if (User.IsInRole("Coach"))
                         {
-                           <li>Some Text!!!</li>
+                            <div class="dropdown">
+                                <input type="checkbox" id="coachInfoDropdown" class="dropdown-checkbox">
+                                <label class="nav-link btn dropdown-toggle" for="coachInfoDropdown">Coach Info</label>
+                                <div class="dropdown-menu" aria-labelledby="coachInfoDropdown">
+                                    <a class="dropdown-item" asp-area="" asp-controller="Trainer" asp-action="MyClients">My Clients</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Trainer" asp-action="MyPrograms">My Programs</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Trainer" asp-action="MyDiets">My Diets</a>
+                                </div>
+                            </div>
+                            <div style="margin-left: 10px;"></div>
+
+                            <div class="dropdown">
+                                <input type="checkbox" id="createDropdown" class="dropdown-checkbox">
+                                <label class="nav-link btn dropdown-toggle" for="createDropdown">Create</label>
+                                <div class="dropdown-menu" aria-labelledby="createDropdown">
+                                    <a class="dropdown-item" asp-area="" asp-controller="Trainer" asp-action="CreateProgram">Program</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Trainer" asp-action="CreateDiet">Diet</a>
+                                </div>
+                            </div>
                         }
                         <li class="nav-item">
                             <partial name="_LoginPartial" />

@@ -2,9 +2,13 @@ namespace Pumping_Iron.Core
 {
     using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
+    using Pumping_Iron.Core.Controllers;
     using Pumping_Iron.Data.Data;
+    using Pumping_Iron.Infrastructure.Extensions;
     using Pumping_Iron.Services;
     using Pumping_Iron.Services.Interfaces;
+    using System.Security.Claims;
+
 
     public class Program
     {
@@ -80,9 +84,9 @@ namespace Pumping_Iron.Core
                         await roleManager.CreateAsync(new IdentityRole(role));
                     }
                 }
+                var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
             }
-
-            app.Run();
+            await app.RunAsync();
         }
     }
 }

@@ -1,13 +1,14 @@
-﻿.navbar {
-    background-color: #f8f9fa; 
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); 
+﻿/* Navbar styles */
+.navbar {
+    background-color: #f8f9fa;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
     transition: background-color 0.3s ease-in-out;
 }
 
 .navbar-brand {
-    font-size: 1.8rem; 
+    font-size: 1.8rem;
     font-weight: bold;
-    color: #007bff; 
+    color: #007bff;
 }
 
 .navbar-nav .nav-item {
@@ -21,11 +22,11 @@
 }
 
     .navbar-nav .nav-link:hover {
-        color: #007bff; 
+        color: #007bff;
     }
 
 .navbar-toggler-icon {
-    background-color: #007bff; 
+    background-color: #007bff;
 }
 
 .navbar-toggler {
@@ -36,4 +37,72 @@
     .navbar-nav .nav-item {
         margin-right: 0;
     }
+}
+
+/* Dropdown styles */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Hide the default browser checkbox */
+.dropdown-checkbox {
+    display: none;
+}
+
+/* Styling the dropdown toggle button */
+.dropdown-toggle {
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    border: none;
+    background-color: #007bff; /* Change as needed */
+    color: #fff; /* Change as needed */
+    border-radius: 0.25rem;
+}
+
+/* Styling the dropdown menu */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 10rem;
+    padding: 0.5rem 0;
+    margin: 0;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    background-color: #fff;
+    border-radius: 0.25rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+    /* Styling the dropdown items */
+    .dropdown-menu .dropdown-item {
+        color: #343a40;
+        display: block;
+        padding: 0.25rem 1.5rem;
+        clear: both;
+        font-weight: normal;
+        text-align: inherit;
+        white-space: nowrap;
+        background-color: transparent;
+        border: 0;
+        cursor: pointer;
+        transition: background-color 0.15s ease-in-out;
+    }
+
+        /* Hover and focus styles for dropdown items */
+        .dropdown-menu .dropdown-item:hover,
+        .dropdown-menu .dropdown-item:focus {
+            color: #fff;
+            background-color: #007bff; /* Example background color on hover/focus */
+        }
+
+/* Show the dropdown menu when hovering over the dropdown button */
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+/* Styling the dropdown menu titles */
+.dropdown-menu .dropdown-toggle {
+    color: #fff; /* Change font color to white */
 }
