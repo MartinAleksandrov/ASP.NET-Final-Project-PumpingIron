@@ -8,5 +8,7 @@
         Task<AllTrainingProgramsViewModel?> GetProgramDetailsAsync(int id);
 
         Task<bool> ExistByIdAsync(int id);
+
+        Task<bool> CreateProgramAsync(CreateProgramViewModel model,int id);
     }
 }

@@ -35,6 +35,19 @@
             return allTrainingPrograms;
         }
 
+        //Create new Training Program
+        public async Task<bool> CreateProgramAsync(CreateProgramViewModel model, int id)
+        {
+            var isExist = await ExistByIdAsync(model.Id);
+
+            //if (isExist || dbContext.TrainingPrograms.AnyAsync(p => p.Id))
+            //{
+
+            //}
+
+            throw new NotImplementedException();
+        }
+
         //Check if the program exist by id 
         public async Task<bool> ExistByIdAsync(int id)
         {

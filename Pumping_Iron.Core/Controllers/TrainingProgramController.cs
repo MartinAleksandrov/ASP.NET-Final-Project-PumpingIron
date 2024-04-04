@@ -1,8 +1,10 @@
 ﻿namespace Pumping_Iron.Core.Controllers
 {
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Pumping_Iron.Services.Interfaces;
 
+    [Authorize(Roles = "Coach")]
     public class TrainingProgramController : Controller
     {
         private readonly ITrainingProgramService programService;
