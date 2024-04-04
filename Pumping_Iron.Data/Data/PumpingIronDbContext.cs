@@ -4,6 +4,7 @@
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
     using Pumping_Iron.Data.Models;
+    using System.Reflection.Emit;
 
     public class PumpingIronDbContext : IdentityDbContext<IdentityUser>
     {
@@ -21,6 +22,12 @@
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<GymParticipants>().HasKey(gp => new { gp.ClientId, gp.ParticipantId });
+
+            builder.Entity<TrainingProgram>()
+           .HasOne(tp => tp.Trainer)
+           .WithMany(t => t.TrainingPrograms)
+           .HasForeignKey(tp => tp.TrainerId)
+           .OnDelete(DeleteBehavior.NoAction);
 
             base.OnModelCreating(builder);
         }

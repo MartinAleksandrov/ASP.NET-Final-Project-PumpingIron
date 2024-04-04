@@ -10,6 +10,8 @@
         {
             TrainerId = Guid.NewGuid();
             Clients = new List<Client>();
+            TrainingPrograms = new List<TrainingProgram>();
+
         }
 
         [Key]
@@ -37,6 +39,8 @@
         public string ImageUrl { get; set; } = null!;
 
         public ICollection<Client> Clients { get; set; }
+
+        public ICollection<TrainingProgram> TrainingPrograms { get; set; } 
 
     }
 }
