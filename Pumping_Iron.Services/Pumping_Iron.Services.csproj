@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Pumping_Iron.Data\Pumping_Iron.Data.csproj" />
+    <ProjectReference Include="..\Pumping_Iron.Infrastructure\Pumping_Iron.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
