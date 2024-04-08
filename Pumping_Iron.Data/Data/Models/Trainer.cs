@@ -11,7 +11,7 @@
             TrainerId = Guid.NewGuid();
             Clients = new List<Client>();
             TrainingPrograms = new List<TrainingProgram>();
-
+            Diets = new List<Diet>();
         }
 
         [Key]
@@ -40,7 +40,9 @@
 
         public ICollection<Client> Clients { get; set; }
 
-        public ICollection<TrainingProgram> TrainingPrograms { get; set; } 
+        public ICollection<TrainingProgram> TrainingPrograms { get; set; }
+
+        public ICollection<Diet> Diets { get; set; }
 
     }
 }

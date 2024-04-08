@@ -2,6 +2,7 @@
 {
     using static Pumping_Iron.Common.EntityValidationsConstants.DietConstants;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
 
     public class Diet
     {
@@ -24,6 +25,11 @@
         [Required]
         [MaxLength(ImageUrlMaxLength)]
         public string ImageUrl { get; set; } = null!;
+
+        [ForeignKey(nameof(Trainer))]
+        public Guid TrainerId { get; set; }
+
+        public Trainer Trainer { get; set; } = null!;
 
         public List<Client> Clients { get; set; } 
     }

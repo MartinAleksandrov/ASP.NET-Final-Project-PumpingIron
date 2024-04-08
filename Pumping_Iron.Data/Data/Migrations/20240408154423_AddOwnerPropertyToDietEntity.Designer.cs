@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Pumping_Iron.Data.Data;
 
@@ -11,9 +12,10 @@ using Pumping_Iron.Data.Data;
 namespace Pumping_Iron.Data.Data.Migrations
 {
     [DbContext(typeof(PumpingIronDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240408154423_AddOwnerPropertyToDietEntity")]
+    partial class AddOwnerPropertyToDietEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

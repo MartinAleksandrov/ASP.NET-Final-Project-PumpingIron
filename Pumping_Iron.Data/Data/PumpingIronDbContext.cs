@@ -29,6 +29,12 @@
            .HasForeignKey(tp => tp.TrainerId)
            .OnDelete(DeleteBehavior.NoAction);
 
+            builder.Entity<Diet>()
+          .HasOne(tp => tp.Trainer)
+          .WithMany(t => t.Diets)
+          .HasForeignKey(tp => tp.TrainerId)
+          .OnDelete(DeleteBehavior.NoAction);
+
             base.OnModelCreating(builder);
         }
 
