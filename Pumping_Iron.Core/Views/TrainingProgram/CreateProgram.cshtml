@@ -1,0 +1,44 @@
+﻿@model CreateProgramViewModel;
+@{
+    ViewBag.Title = "Create Program";
+}
+
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<div class="row">
+    <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+        <form asp-action="CreateProgram" method="post">
+            <div class="mb-3">
+                <label asp-for="@Model.Name" class="form-label-add-edit">Program Name</label>
+                <input asp-for="@Model.Name" class="form-control" aria-required="true" placeholder="Martin" />
+                <span asp-validation-for="@Model.Name" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.Duration" class="form-label-add-edit">Duration</label>
+                <input asp-for="@Model.Duration" class="form-control" placeholder="30-180 min" />
+                <span asp-validation-for="@Model.Duration" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.Description" class="form-label-add-edit">Description</label>
+                <textarea asp-for="@Model.Description" class="form-control" aria-required="true" rows="5" placeholder="Some description"></textarea>
+                <span asp-validation-for="@Model.Description" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.ImageUrl" class="form-label-add-edit">Image-Url</label>
+                <input asp-for="@Model.ImageUrl" class="form-control" placeholder="Image" />
+                <span asp-validation-for="@Model.ImageUrl" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <input class="btn btn-warning mb-2 w-100 p-3 fw-bold" type="submit" value="CREATE" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
