@@ -10,6 +10,7 @@
 
         public string Gender { get; set; } = null!;
 
+        public string ImageUrl { get; set; } = null!;
 
         public ClientProgramViewModel TrainingProgram { get; set; } = null!;
 

@@ -26,6 +26,9 @@
         [MaxLength(ClientMaxAge)]
         public int Age { get; set; }
 
+        [Required]
+        [MaxLength(ImageUrlMaxLength)]
+        public string ImageUrl { get; set; } = string.Empty;
 
         [Required]
         public Gender Gender { get; set; }
