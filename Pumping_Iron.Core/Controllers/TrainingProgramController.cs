@@ -2,9 +2,11 @@
 {
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.Extensions.Logging;
+    using Pumping_Iron.Data.ViewModels.TrainingPrograms;
+    using Pumping_Iron.Infrastructure.Extensions;
     using Pumping_Iron.Services.Interfaces;
 
-    [Authorize(Roles = "Coach")]
     public class TrainingProgramController : Controller
     {
         private readonly ITrainingProgramService programService;
@@ -32,8 +34,44 @@
             {
                 return BadRequest();
             }
-           
+
             return View(model);
         }
+
+
+        [HttpGet]
+        [Authorize(Roles = "Coach")]
+        public IActionResult CreateProgram()
+        {
+            //var model = new CreateProgramViewModel();
+
+            return View();
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Coach")]
+        public async Task<IActionResult> CreateProgram(CreateProgramViewModel viewModel)
+        {
+            var userId = User.GetId();
+
+            try
+            {
+                var isCreated = await programService.CreateProgramAsync(viewModel, userId);
+                if (!isCreated)
+                {
+                    ModelState.AddModelError(string.Empty, "Failed to create the program. It may already exist or there was an issue with the provided data.");
+                    return View(viewModel); // Return the view with the model to display validation errors
+                }
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError(string.Empty, "An unexpected error occurred. Please try again later or contact the administrator.");
+                return View(viewModel); // Return the view with the model to display the error message
+            }
+
+            return RedirectToAction(nameof(AllTrainingPrograms));
+
+        }
+
     }
 }

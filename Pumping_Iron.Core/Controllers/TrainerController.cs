@@ -4,7 +4,6 @@
     using Microsoft.AspNetCore.Mvc;
     using Pumping_Iron.Services.Interfaces;
 
-    [Authorize(Roles = "Coach")]
     public class TrainerController : Controller
     {
         private readonly ITrainerService trainerService;
