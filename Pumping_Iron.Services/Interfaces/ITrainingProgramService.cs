@@ -11,6 +11,5 @@
 
         Task<bool> CreateProgramAsync(CreateProgramViewModel model,string trainerId);
 
-        Task<>
     }
 }
