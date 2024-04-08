@@ -2,8 +2,8 @@
 {
     using Microsoft.EntityFrameworkCore;
     using Pumping_Iron.Data.Data;
+    using Pumping_Iron.Data.Models;
     using Pumping_Iron.Data.ViewModels.Diet;
-    using Pumping_Iron.Data.ViewModels.TrainingPrograms;
     using Pumping_Iron.Services.Interfaces;
 
     public class DietService : IDietService
@@ -30,6 +30,37 @@
                 .ToListAsync();
 
             return allDiets;
+        }
+
+        public async Task<bool> CreateDietAsync(CreateDietViewModel model, string trainerId)
+        {
+            // Check if the diet already exists with the given id or name
+            if (await ExistByIdAsync(model.Id) || dbContext.Diets.Any(p => p.Name == model.Name))
+            {
+                return false; // Program already exists
+            }
+
+            // Check if the trainer exists
+            var trainer = await dbContext.Trainers.FirstOrDefaultAsync(t => t.TrainerId.ToString() == trainerId);
+            if (trainer == null)
+            {
+                return false; // Trainer not found
+            }
+
+            // Create a new diet
+            var newDiet = new Diet
+            {
+                Name = model.Name,
+                Description = model.Description,
+                ImageUrl = model.ImageUrl,
+                Trainer = trainer
+            };
+
+            dbContext.Diets.Add(newDiet);
+            trainer.Diets.Add(newDiet);
+            await dbContext.SaveChangesAsync();
+
+            return true; // Diet created successfully
         }
 
         //Check if there is such Diet by Id

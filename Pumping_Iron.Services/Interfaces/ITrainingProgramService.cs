@@ -9,6 +9,8 @@
 
         Task<bool> ExistByIdAsync(int id);
 
-        Task<bool> CreateProgramAsync(CreateProgramViewModel model,int id, string trainerId);
+        Task<bool> CreateProgramAsync(CreateProgramViewModel model,string trainerId);
+
+        Task<>
     }
 }

@@ -37,16 +37,16 @@
         }
 
         //Create new Training Program
-        public async Task<bool> CreateProgramAsync(CreateProgramViewModel model, int id,string trainerId)
+        public async Task<bool> CreateProgramAsync(CreateProgramViewModel model,string trainerId)
         {
             // Check if the program already exists with the given id or name
-            if (await ExistByIdAsync(id) || dbContext.TrainingPrograms.Any(p => p.Name == model.Name))
+            if (await ExistByIdAsync(model.Id) || dbContext.TrainingPrograms.Any(p => p.Name == model.Name))
             {
                 return false; // Program already exists
             }
 
             // Check if the trainer exists
-            var trainer = await dbContext.Trainers.FindAsync(trainerId);
+            var trainer = await dbContext.Trainers.FirstOrDefaultAsync(t => t.TrainerId.ToString() == trainerId);
             if (trainer == null)
             {
                 return false; // Trainer not found
@@ -63,6 +63,7 @@
             };
 
             dbContext.TrainingPrograms.Add(newProgram);
+            trainer.TrainingPrograms.Add(newProgram);
             await dbContext.SaveChangesAsync();
 
             return true; // Program created successfully
