@@ -9,10 +9,13 @@
     public class DietService : IDietService
     {
         private readonly PumpingIronDbContext dbContext;
+        private readonly ITrainerService trainerService;
 
-        public DietService(PumpingIronDbContext context)
+
+        public DietService(PumpingIronDbContext context,ITrainerService service)
         {
             dbContext = context;
+            trainerService = service;
         }
 
         //Shows all available diets with info about them.
@@ -100,6 +103,35 @@
                    .FirstOrDefaultAsync();
 
             return model!;
+        }
+
+        //Find all diets for specific trainer
+        public async Task<IEnumerable<MyDietsViewModel>?> GetMyDietsAsync(string trainerId)
+        {
+            // Check if the trainer exists
+            var isTrainerExist = await trainerService.FindTrainerByIdAsync(trainerId);
+
+            // If the trainer does not exist, return null
+            if (string.IsNullOrEmpty(isTrainerExist))
+            {
+                return null;
+            }
+
+            // Retrieve diets associated with the trainer
+            var trainerDiets = await dbContext.Diets
+                .AsNoTracking() // Query without tracking changes
+                .Where(d => d.TrainerId.ToString() == trainerId) // Filter by trainerId
+                .Select(d => new MyDietsViewModel() 
+                {
+                    Id = d.Id,
+                    Name = d.Name,
+                    Description = d.Description,
+                    ImageUrl = d.ImageUrl
+                })
+                .ToListAsync(); 
+
+            // Return the list of trainer's diets
+            return trainerDiets;
         }
     }
 }

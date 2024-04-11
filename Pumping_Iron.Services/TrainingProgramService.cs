@@ -11,10 +11,13 @@
     public class TrainingProgramService : ITrainingProgramService
     {
         private readonly PumpingIronDbContext dbContext;
+        private readonly ITrainerService trainerService;
 
-        public TrainingProgramService(PumpingIronDbContext context)
+
+        public TrainingProgramService(PumpingIronDbContext context, ITrainerService service)
         {
             dbContext = context;
+            trainerService = service;
         }
 
         //Shows all available trainers with info about them.
@@ -80,6 +83,36 @@
             }
 
             return true;
+        }
+
+        //Retrieve all programs for specific trainer
+        public async Task<IEnumerable<MyTrainingPrograms>?> GetMyTrainingProgramsAsync(string trainerId)
+        {
+            // Check if the trainer exists
+            var trainerExist = await trainerService.FindTrainerByIdAsync(trainerId);
+
+            // If the trainer does not exist, return null
+            if (string.IsNullOrEmpty(trainerExist))
+            {
+                return null;
+            }
+
+            // Retrieve training programs associated with the trainer
+            var trainingPrograms = await dbContext.TrainingPrograms
+                .AsNoTracking() // Query without tracking changes
+                .Where(tp => tp.TrainerId.ToString() == trainerId) // Filter by trainerId
+                .Select(tp => new MyTrainingPrograms() 
+                {
+                    Id = tp.Id,
+                    Description = tp.Description,
+                    Duration = tp.Duration,
+                    Name = tp.Name,
+                    ImageUrl = tp.ImageUrl
+                })
+                .ToListAsync();
+
+            // Return the list of trainer's training programs
+            return trainingPrograms;
         }
 
         //Map trainer entity to ViewModel if such trainingProgram exist

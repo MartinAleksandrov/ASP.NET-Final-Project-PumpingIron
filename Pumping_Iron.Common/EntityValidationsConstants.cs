@@ -23,6 +23,9 @@
 
             public const int ClientMinAge = 12;
             public const int ClientMaxAge = 100;
+
+            public const int ImageUrlMaxLength = 255;
+
         }
 
         public static class ProgramConstants

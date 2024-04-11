@@ -10,5 +10,8 @@
         Task<bool> ExistByIdAsync(int id);
 
         Task<bool> CreateDietAsync(CreateDietViewModel model, string trainerId);
+
+        Task<IEnumerable<MyDietsViewModel>?> GetMyDietsAsync(string trainerId);
+
     }
 }
