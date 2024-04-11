@@ -1,0 +1,37 @@
+﻿.container {
+    padding: 20px;
+}
+
+.client-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+    .client-details > div {
+        flex: 1;
+    }
+
+    .client-details h4 {
+        margin-bottom: 10px;
+    }
+
+    .client-details p {
+        margin: 5px 0;
+    }
+
+.client-image {
+    width: 300px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.client-details .btn {
+    margin-top: 10px;
+}
+
+hr {
+    margin: 20px 0;
+}

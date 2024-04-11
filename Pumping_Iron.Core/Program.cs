@@ -41,6 +41,7 @@ namespace Pumping_Iron.Core
             builder.Services.AddScoped<ITrainerService, TrainerService>();
             builder.Services.AddScoped<IDietService, DietService>();
             builder.Services.AddScoped<ITrainingProgramService, TrainingProgramService>();
+            builder.Services.AddScoped<IClientService, ClientService>();
 
             var app = builder.Build();
 
@@ -70,7 +71,7 @@ namespace Pumping_Iron.Core
 
             app.MapRazorPages();
 
-            //Creating roles every time we start app
+            //Creating roles every time we start the app
             using (var scope = app.Services.CreateScope())
             {
                 var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();

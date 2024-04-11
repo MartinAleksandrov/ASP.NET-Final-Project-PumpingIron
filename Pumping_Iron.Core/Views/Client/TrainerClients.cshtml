@@ -1,0 +1,34 @@
+﻿@model IEnumerable<MyClientsViewModel>
+
+@{
+    ViewData["Title"] = "My Clients";
+}
+    
+
+<div class="container">
+    <h2>All Clients</h2>
+    <hr />
+
+    @foreach (var client in Model)
+    {
+        <div class="client-details">
+            <div>
+                <h4>@client.Name</h4>
+                <p><strong>Age:</strong> @client.Age</p>
+                <p><strong>Gender:</strong> @client.Gender</p>
+                <p><strong>Membership:</strong> @client.MembershipName</p>
+                <!-- Button for Client Program -->
+                <a asp-controller="TrainingProgram" asp-action="Details" asp-route-id="@client.TrainingProgram.Id" class="btn btn-warning mb-2 w-100 p-3 fw-bold">Program Details</a>
+                <!-- Button for Client Diet -->
+                <a asp-controller="Diet" asp-action="Details" asp-route-id="@client.Diet.Id" class="btn btn-warning mb-2 w-100 p-3 fw-bold">Diet Details</a>
+
+            </div>
+            <div>
+                <img src="@client.ImageUrl" alt="Client Image" class="client-image" />
+            </div>
+        </div>
+        <hr />
+    }
+</div>
+
+<link rel="stylesheet" href="~/css/MyClients.css">

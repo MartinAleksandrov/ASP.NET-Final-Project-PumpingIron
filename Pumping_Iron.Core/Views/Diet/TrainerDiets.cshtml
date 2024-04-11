@@ -1,0 +1,23 @@
+﻿@model IEnumerable<MyDietsViewModel>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All My Diets</title>
+    <link rel="stylesheet" href="~/css/MyDiets.css" asp-append-version="true">
+</head>
+<body>
+    <div class="container">
+        @foreach (var diet in Model)
+        {
+            <div class="diet-card">
+                <img src="@diet.ImageUrl" alt="Diet Image">
+                <h2>@diet.Name</h2>
+                <p>@diet.Description</p>
+            </div>
+        }
+    </div>
+</body>
+</html>

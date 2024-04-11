@@ -3,7 +3,6 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Pumping_Iron.Data.ViewModels.Diet;
-    using Pumping_Iron.Data.ViewModels.TrainingPrograms;
     using Pumping_Iron.Infrastructure.Extensions;
     using Pumping_Iron.Services.Interfaces;
 
@@ -17,6 +16,7 @@
         }
 
         [HttpGet]
+        [Authorize(Roles ="Client")]
         public async Task<IActionResult> AllDiets()
         {
             var allDiets = await dietService.AllDietsAsync();
@@ -68,5 +68,26 @@
             return RedirectToAction(nameof(AllDiets));
 
         }
+
+
+        [HttpGet]
+        public async Task<IActionResult> TrainerDiets()
+        {
+            // Get the current user's ID
+            var userId = User.GetId();
+
+            // Retrieve diets associated with the current user (trainer)
+            var diets = await dietService.GetMyDietsAsync(userId);
+
+            // Check if diets were successfully retrieved
+            if (diets == null)
+            {
+                // Return a BadRequest response if diets are null (Trainer does not exist or error occurred)
+                return BadRequest("Trainer does not exist or error occurred.");
+            }
+
+            // Return the TrainerDiets view with the retrieved diets
+            return View(diets);
+        } 
     }
 }

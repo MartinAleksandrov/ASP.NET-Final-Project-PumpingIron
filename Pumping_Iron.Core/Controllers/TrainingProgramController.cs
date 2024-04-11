@@ -43,8 +43,6 @@
         [Authorize(Roles = "Coach")]
         public IActionResult CreateProgram()
         {
-            //var model = new CreateProgramViewModel();
-
             return View();
         }
 
@@ -71,6 +69,21 @@
 
             return RedirectToAction(nameof(AllTrainingPrograms));
 
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> TrainerPrograms()
+        {
+            var userId = User.GetId();
+
+            var trainingPrograms = await programService.GetMyTrainingProgramsAsync(userId);
+
+            if (trainingPrograms == null)
+            {
+                return BadRequest("Trainer does not exist or error occurred.");
+            }
+
+            return View(trainingPrograms);
         }
 
     }
