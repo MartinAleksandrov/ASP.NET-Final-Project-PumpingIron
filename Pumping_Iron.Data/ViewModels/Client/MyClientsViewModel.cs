@@ -12,10 +12,10 @@
 
         public string ImageUrl { get; set; } = null!;
 
-        public ClientProgramViewModel TrainingProgram { get; set; } = null!;
+        public ClientProgramViewModel? TrainingProgram { get; set; } 
 
 
-        public ClientDietViewModel Diet { get; set; } = null!;
+        public ClientDietViewModel? Diet { get; set; } = null!;
 
 
         public string MembershipName { get; set; } = null!;

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Pumping_Iron.Data.Data;
 
@@ -11,9 +12,10 @@ using Pumping_Iron.Data.Data;
 namespace Pumping_Iron.Data.Data.Migrations
 {
     [DbContext(typeof(PumpingIronDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240413170913_MakingClientTrainerDietAndMembershipNullable")]
+    partial class MakingClientTrainerDietAndMembershipNullable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -246,6 +248,7 @@ namespace Pumping_Iron.Data.Data.Migrations
                         .HasColumnType("nvarchar(255)");
 
                     b.Property<int?>("MembershipId")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -470,7 +473,9 @@ namespace Pumping_Iron.Data.Data.Migrations
 
                     b.HasOne("Pumping_Iron.Data.Models.Membership", "Membership")
                         .WithMany("Members")
-                        .HasForeignKey("MembershipId");
+                        .HasForeignKey("MembershipId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Pumping_Iron.Data.Models.Trainer", "Trainer")
                         .WithMany("Clients")

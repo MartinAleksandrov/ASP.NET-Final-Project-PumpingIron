@@ -34,35 +34,27 @@
         public Gender Gender { get; set; }
 
 
-        [Required]
         [ForeignKey(nameof(TrainingProgram))]
-        public int TrainingProgramId { get; set; }
+        public int? TrainingProgramId { get; set; }
 
-        [Required]
-        public TrainingProgram TrainingProgram { get; set; } = null!;
+        public TrainingProgram? TrainingProgram { get; set; }
 
 
-        [Required]
         [ForeignKey(nameof(Diet))]
-        public int DietId { get; set; }
+        public int? DietId { get; set; }
 
-        [Required]
-        public Diet Diet { get; set; } = null!;
+        public Diet? Diet { get; set; } 
 
 
-        [Required]
         [ForeignKey(nameof(Trainer))]
-        public Guid TrainerId { get; set; }
+        public Guid? TrainerId { get; set; }
 
-        [Required]
-        public Trainer Trainer { get; set; } = null!;
+        public Trainer? Trainer { get; set; } 
 
 
-        [Required]
         [ForeignKey(nameof(Membership))]
-        public int MembershipId { get; set; }
+        public int? MembershipId { get; set; }
 
-        [Required]
-        public Membership Membership { get; set; } = null!;
+        public Membership? Membership { get; set; } = null!;
     }
 }
