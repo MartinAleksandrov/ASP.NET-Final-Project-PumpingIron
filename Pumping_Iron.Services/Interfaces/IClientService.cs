@@ -4,5 +4,7 @@
     public interface IClientService
     {
         Task<IEnumerable<MyClientsViewModel>?> GetMyClientsAsync(string trainerId);
+
+
     }
 }

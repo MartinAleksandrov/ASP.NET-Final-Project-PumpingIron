@@ -42,7 +42,6 @@
                 .Where(c => c.TrainerId.ToString() == trainerId)
                 .Include(c => c.Membership)
                 .Include(c => c.TrainingProgram)
-                .Include(c => c.Diet)
                 .Select(c => new MyClientsViewModel
                 {
                     // Map client properties to MyClientsViewModel properties
@@ -50,29 +49,25 @@
                     Age = c.Age,
                     Gender = c.Gender.ToString(),
                     ImageUrl = c.ImageUrl,
-                    MembershipName = c.Membership.TypeMembership.ToString(),
-                    TrainingProgram = new ClientProgramViewModel
-                    {
-                        // Map training program properties to ClientProgramViewModel properties
-                        Id = c.TrainingProgram.Id,
-                        Name = c.TrainingProgram.Name,
-                        Description = c.TrainingProgram.Description,
-                        Duration = c.TrainingProgram.Duration,
-                        ImageUrl = c.TrainingProgram.ImageUrl
-                    },
-                    Diet = new ClientDietViewModel
-                    {
-                        // Map diet properties to ClientDietViewModel properties
-                        Id = c.Diet.Id,
-                        Name = c.Diet.Name,
-                        Description = c.Diet.Description,
-                        ImageUrl = c.Diet.ImageUrl
-                    }
+                    MembershipName = c.Membership!.TypeMembership.ToString()
+
+                    //TrainingProgram = new ClientProgramViewModel
+                    //{
+                    //    // Map training program properties to ClientProgramViewModel properties
+                    //    Id = c.TrainingProgram.Id,
+                    //    Name = c.TrainingProgram.Name,
+                    //    Description = c.TrainingProgram.Description,
+                    //    Duration = c.TrainingProgram.Duration,
+                    //    ImageUrl = c.TrainingProgram.ImageUrl
+                    //}
                 })
                 .ToListAsync();
 
             // Return the collection of clients associated with the trainer
             return myClients;
         }
+
+       
+       
     }
 }
