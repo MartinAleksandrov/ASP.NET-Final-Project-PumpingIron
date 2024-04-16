@@ -1,0 +1,31 @@
+﻿.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.training-program-card {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    padding: 20px;
+    width: 300px;
+}
+
+    .training-program-card img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+
+    .training-program-card h2 {
+        color: #333;
+        margin-top: 0;
+    }
+
+    .training-program-card p {
+        color: #666;
+        margin-bottom: 10px;
+    }

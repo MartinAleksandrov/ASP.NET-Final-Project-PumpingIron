@@ -65,7 +65,7 @@
                 return View(viewModel); // Return the view with the model to display the error message
             }
 
-            return RedirectToAction(nameof(AllDiets));
+            return RedirectToAction(nameof(TrainerDiets));
 
         }
 

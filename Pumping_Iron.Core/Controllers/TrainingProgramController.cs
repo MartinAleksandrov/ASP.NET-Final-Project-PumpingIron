@@ -2,7 +2,6 @@
 {
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.Extensions.Logging;
     using Pumping_Iron.Data.ViewModels.TrainingPrograms;
     using Pumping_Iron.Infrastructure.Extensions;
     using Pumping_Iron.Services.Interfaces;
@@ -17,6 +16,7 @@
         }
 
         [HttpGet]
+        [Authorize(Roles ="Client")]
         public async Task<IActionResult> AllTrainingPrograms()
         {
             var allTrainingPrograms = await programService.AllTrainingProgramsAsync();
@@ -67,7 +67,7 @@
                 return View(viewModel); // Return the view with the model to display the error message
             }
 
-            return RedirectToAction(nameof(AllTrainingPrograms));
+            return RedirectToAction(nameof(TrainerPrograms));
 
         }
 

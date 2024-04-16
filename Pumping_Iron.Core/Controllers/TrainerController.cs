@@ -2,6 +2,7 @@
 {
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
+    using Pumping_Iron.Infrastructure.Extensions;
     using Pumping_Iron.Services.Interfaces;
 
     public class TrainerController : Controller
@@ -13,7 +14,7 @@
             trainerService = service;
         }
 
-        [Authorize(Roles = "Coach")]
+        [Authorize(Roles = "Client")]
         [HttpGet]
         public async Task<IActionResult> AllTrainers()
         {
@@ -34,5 +35,6 @@
 
             return View(model);
         }
+
     }
 }
