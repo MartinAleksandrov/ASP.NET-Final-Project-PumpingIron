@@ -18,9 +18,10 @@
                         <p class="card-text">Age: @trainer.Age</p>
                         <p class="card-text">Gender: @trainer.Gender</p>
                         <div class="d-flex justify-content-between align-items-center">
-                            <form asp-controller="Trainer" asp-action="Hire" asp-route-id="@trainer.Id">
+                            <form asp-action="Hire" asp-controller="Client" method="get">
+                                <input type="hidden" name="trainerId" value="@trainer.Id" />
                                 <button type="submit" class="btn btn-lg btn-success rounded-pill">Hire</button>
-                            </form>
+                            </form>                   
                             <a href="@Url.Action("Details", "Trainer", new { id = trainer.Id })" class="btn btn-lg btn-primary rounded-pill">See More</a>
                         </div>
                     </div>

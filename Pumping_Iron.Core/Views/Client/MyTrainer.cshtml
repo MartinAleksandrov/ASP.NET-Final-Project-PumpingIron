@@ -1,0 +1,19 @@
+﻿@model TrainerDetailsViewModel
+
+<div class="trainer-details">
+    <div class="trainer-info">
+        @if (Model == null)
+        {
+            <p>You dont have trainer so far!!!</p>
+        }
+        else
+        {
+            <h2>@Model.Name</h2>
+            @if (!string.IsNullOrEmpty(Model.Information))
+            {
+                <p>@Model.Information</p>
+            }
+            <img src="@Model.ImageUrl" alt="Trainer Image" class="trainer-image" />
+        }
+    </div>
+</div>

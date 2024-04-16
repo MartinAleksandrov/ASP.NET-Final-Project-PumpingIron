@@ -1,7 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Identity
 
-@inject SignInManager<IdentityUser> SignInManeger;
-@inject UserManager<IdentityUser> UserManeger;
+    @inject SignInManager<IdentityUser> SignInManeger;
+    @inject UserManager<IdentityUser> UserManeger;
 
 <!DOCTYPE html>
 <html lang="en">
@@ -40,6 +40,16 @@
                             <li class="nav-item">
                                 <a class="nav-link" asp-area="" asp-controller="TrainingProgram" asp-action="AllTrainingPrograms">Training Programs</a>
                             </li>
+                            <div class="dropdown">
+                                <input type="checkbox" id="clientInfoDropdown" class="dropdown-checkbox">
+                                <label class="nav-link btn dropdown-toggle" for="clientInfoDropdown">My Info</label>
+                                <div class="dropdown-menu" aria-labelledby="clientInfoDropdown">
+                                    <a class="dropdown-item" asp-area="" asp-controller="Client" asp-action="MyTrainer">My Trainer</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Client" asp-action="MyProgram">My Program</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Client" asp-action="MyDiet">My Diet</a>
+                                </div>
+                            </div>
+                            <div style="margin-left: 10px;"></div>
                         }
                         else if (User.IsInRole("Coach"))
                         {
@@ -48,7 +58,7 @@
                                 <label class="nav-link btn dropdown-toggle" for="coachInfoDropdown">Coach Info</label>
                                 <div class="dropdown-menu" aria-labelledby="coachInfoDropdown">
                                     <a class="dropdown-item" asp-area="" asp-controller="Client" asp-action="TrainerClients">My Clients</a>
-                                    <a class="dropdown-item" asp-area="" asp-controller="Trainer" asp-action="MyPrograms">My Programs</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="TrainingProgram" asp-action="TrainerPrograms">My Programs</a>
                                     <a class="dropdown-item" asp-area="" asp-controller="Diet" asp-action="TrainerDiets">My Diets</a>
                                 </div>
                             </div>

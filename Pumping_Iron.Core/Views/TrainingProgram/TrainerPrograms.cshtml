@@ -1,0 +1,20 @@
+﻿@model IEnumerable<MyTrainingPrograms>
+
+@{
+    ViewData["Title"] = "My Training Programs";
+}
+
+<h1>@ViewData["Title"]</h1>
+<link rel="stylesheet" href="~/css/MyTrainingPrograms.css" asp-append-version="true">
+
+<div class="container">
+    @foreach (var program in Model)
+    {
+        <div class="training-program-card">
+            <img src="@program.ImageUrl" alt="Training Program Image">
+            <h2>@program.Name</h2>
+            <p>@program.Description</p>
+            <p>Duration: @program.Duration days</p>
+        </div>
+    }
+</div>

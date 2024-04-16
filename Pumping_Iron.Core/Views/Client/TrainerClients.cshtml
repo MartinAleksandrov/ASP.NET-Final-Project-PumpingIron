@@ -17,11 +17,24 @@
                 <p><strong>Age:</strong> @client.Age</p>
                 <p><strong>Gender:</strong> @client.Gender</p>
                 <p><strong>Membership:</strong> @client.MembershipName</p>
-                <!-- Button for Client Program -->
-                <a asp-controller="TrainingProgram" asp-action="Details" asp-route-id="@client.TrainingProgram.Id" class="btn btn-warning mb-2 w-100 p-3 fw-bold">Program Details</a>
-                <!-- Button for Client Diet -->
-                <a asp-controller="Diet" asp-action="Details" asp-route-id="@client.Diet.Id" class="btn btn-warning mb-2 w-100 p-3 fw-bold">Diet Details</a>
-
+                @if (client.TrainingProgram != null)
+                {
+                    <!-- Button for Client Program -->
+                    <a asp-controller="TrainingProgram" asp-action="Details" asp-route-id="@client.TrainingProgram.Id" class="btn btn-warning mb-2 w-100 p-3 fw-bold">Program Details</a>
+                }
+                else
+                {
+                    
+                }
+                @if (client.Diet != null)
+                {
+                    <!-- Button for Client Diet -->
+                    <a asp-controller="Diet" asp-action="Details" asp-route-id="@client.Diet.Id" class="btn btn-warning mb-2 w-100 p-3 fw-bold">Diet Details</a>
+                }
+                else
+                {
+                    
+                }
             </div>
             <div>
                 <img src="@client.ImageUrl" alt="Client Image" class="client-image" />

@@ -1,5 +1,8 @@
-﻿@model AllTrainingProgramsViewModel
+﻿@using Microsoft.AspNetCore.Identity
+@model AllTrainingProgramsViewModel
 
+@inject SignInManager<IdentityUser> SignInManeger;
+@inject UserManager<IdentityUser> UserManeger;
 @{
     ViewData["Title"] = "Training Program Details";
 }
@@ -13,7 +16,15 @@
                 <h2 class="program-name">@Model.Name</h2>
                 <p class="program-description">@Model.Description</p>
                 <p class="program-duration">Duration: @Model.Duration days</p>
-                <a asp-action="AllTrainingPrograms" asp-controller="TrainingProgram" class="btn btn-lg btn-success rounded-pill">All Programs</a>
+                @if (User.IsInRole("Client"))
+                {
+                    <a asp-action="AllTrainingPrograms" asp-controller="TrainingProgram" class="btn btn-lg btn-success rounded-pill">All Programs</a>
+                }
+                else
+                {
+                    <a asp-action="TrainerClients" asp-controller="Client" class="btn btn-lg btn-success rounded-pill">Back</a>
+
+                }
             </div>
         </div>
         <div class="col-md-6">

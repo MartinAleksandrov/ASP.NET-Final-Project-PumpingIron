@@ -1,0 +1,17 @@
+﻿@model ClientProgramViewModel
+
+<div>
+    <h2>Program Details</h2>
+    @if (Model == null)
+    {
+        <p>You dont have program so far!!!</p>
+    }
+    else
+    {
+        <p><strong>ID:</strong> @Model.Id</p>
+        <p><strong>Name:</strong> @Model.Name</p>
+        <p><strong>Description:</strong> @Model.Description</p>
+        <p><strong>Duration:</strong> @Model.Duration days</p>
+        <img src="@Model.ImageUrl" alt="Program Image" />
+    }
+</div>

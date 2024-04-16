@@ -1,0 +1,16 @@
+﻿@model ClientDietViewModel
+
+<div>
+    <h2>Diet Details</h2>
+    @if (Model == null)
+    {
+        <p>You dont have diet so far!!!</p>
+    }
+    else
+    {
+        <p><strong>ID:</strong> @Model!.Id</p>
+        <p><strong>Name:</strong> @Model.Name</p>
+        <p><strong>Description:</strong> @Model.Description</p>
+        <img src="@Model.ImageUrl" alt="Diet Image" />
+    }
+</div>

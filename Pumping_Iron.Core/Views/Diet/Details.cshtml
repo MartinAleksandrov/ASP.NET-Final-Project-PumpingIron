@@ -1,5 +1,8 @@
-﻿@model AllDietsViewModel
+﻿@using Microsoft.AspNetCore.Identity
+@model AllDietsViewModel
 
+@inject SignInManager<IdentityUser> SignInManeger;
+@inject UserManager<IdentityUser> UserManeger;
 @{
     ViewData["Title"] = "Diet Details";
 }
@@ -15,7 +18,15 @@
             <div class="diet-details">
                 <h2 class="diet-name">@Model.Name</h2>
                 <p class="diet-description">@Model.Description</p>
-                <a asp-action="AllDiets" asp-controller="Diet" class="btn btn-lg btn-success rounded-pill">Go Back</a>
+                @if (User.IsInRole("Client"))
+                {
+                    <a asp-action="AllDiets" asp-controller="Diet" class="btn btn-lg btn-success rounded-pill">Go Back</a>
+                }
+                else
+                {
+                    <a asp-action="TrainerClients" asp-controller="Client" class="btn btn-lg btn-success rounded-pill">Back</a>
+
+                }
             </div>
         </div>
     </div>
