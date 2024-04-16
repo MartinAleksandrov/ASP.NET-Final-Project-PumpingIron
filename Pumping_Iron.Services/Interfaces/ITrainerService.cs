@@ -1,6 +1,5 @@
 ﻿namespace Pumping_Iron.Services.Interfaces
 {
-    using Pumping_Iron.Data.Models;
     using Pumping_Iron.Data.ViewModels.Client;
     using Pumping_Iron.Data.ViewModels.Trainer;
 

@@ -54,7 +54,7 @@
             return id;
         }
 
-        //Map trainer entity to ViewModel if such trainer exist
+        ////Map trainer entity to ViewModel if such trainer exist
         public async Task<TrainerDetailsViewModel?> GetTrainerDetailsAsync(string id)
         {
             var trinerId = await FindTrainerByIdAsync(id);
@@ -125,6 +125,7 @@
                     Age = model.Age,
                     ImageUrl = model.ImageUrl,
                     Gender = model.Gender,
+                    Trainer = trainer,
                     TrainerId = model.TrainerId,
                     Membership = model.Membership
                 };
@@ -134,7 +135,6 @@
                 dbContext.Entry(client).State = EntityState.Added;
                 trainer.Clients.Add(client);
                 await dbContext.SaveChangesAsync();
-
             }
             // Return true indicating success
             return true;

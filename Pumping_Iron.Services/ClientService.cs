@@ -2,7 +2,9 @@
 {
     using Microsoft.EntityFrameworkCore;
     using Pumping_Iron.Data.Data;
+    using Pumping_Iron.Data.Models;
     using Pumping_Iron.Data.ViewModels.Client;
+    using Pumping_Iron.Data.ViewModels.Trainer;
     using Pumping_Iron.Services.Interfaces;
     using System.Threading.Tasks;
 
@@ -67,7 +69,80 @@
             return myClients;
         }
 
-       
-       
+        public async Task<ClientDietViewModel?> GetMyDietInfo(string userId)
+        {
+            var user = await IsClientExist(userId);
+
+            if (user == null || user.Diet == null || user.DietId != 0)
+            {
+                return null;
+            }
+
+            var dietViewModel = new ClientDietViewModel()
+            {
+                Id = user.Diet.Id,
+                Name = user.Diet.Name,
+                Description = user.Diet.Description,
+                ImageUrl = user.Diet.ImageUrl
+            };
+
+            return dietViewModel;
+        }
+
+        public async Task<ClientProgramViewModel?> GetMyProgramInfo(string userId)
+        {
+            var user = await IsClientExist(userId);
+
+            if (user == null || user.TrainingProgram == null || user.TrainingProgramId != 0)
+            {
+                return null;
+            }
+
+            var programViewModel = new ClientProgramViewModel()
+            {
+                Id = user.TrainingProgram.Id,
+                Name = user.TrainingProgram.Name,
+                Description = user.TrainingProgram.Description,
+                ImageUrl = user.TrainingProgram.ImageUrl,
+                Duration = user.TrainingProgram.Duration
+            };
+
+            return programViewModel;
+        }
+
+        public async Task<TrainerDetailsViewModel?> GetMyTrainerInfo(string userId)
+        {
+            var user = await IsClientExist(userId);
+
+            if (user == null || user.TrainerId == null)
+            {
+                return null;
+            }
+
+            var trainer = await dbContext.Trainers.FirstOrDefaultAsync(t => t.TrainerId == user.TrainerId);
+
+            var trainerViewModel = new TrainerDetailsViewModel()
+            {
+                Id = trainer!.TrainerId.ToString()!,
+                Name = trainer.Name,
+                ImageUrl = trainer.ImageUrl,
+                Information = trainer.Information
+
+            };
+
+            return trainerViewModel;
+        }
+
+        private async Task<Client?> IsClientExist(string userId)
+        {
+            var client = await dbContext.Clients.FirstOrDefaultAsync(c => c.ClientId.ToString() == userId);
+
+            if (client == null)
+            {
+                return null;
+            }
+
+            return client;
+        }
     }
 }
