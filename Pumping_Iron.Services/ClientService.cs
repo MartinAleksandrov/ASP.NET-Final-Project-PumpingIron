@@ -133,6 +133,23 @@
             return trainerViewModel;
         }
 
+        public async Task<bool> RemoveMyTrainer(string clientId)
+        {
+            var client = await IsClientExist(clientId);
+
+            if (client != null && client.TrainerId != null)
+            {
+                dbContext.Clients.Remove(client);
+                await dbContext.SaveChangesAsync();
+
+                var isClientRemovedFromTrainerClients = await trainerService.RemoveClient(clientId,client.TrainerId.ToString()!);
+
+                return true;
+            }
+
+            return false;
+        }
+
         private async Task<Client?> IsClientExist(string userId)
         {
             var client = await dbContext.Clients.FirstOrDefaultAsync(c => c.ClientId.ToString() == userId);

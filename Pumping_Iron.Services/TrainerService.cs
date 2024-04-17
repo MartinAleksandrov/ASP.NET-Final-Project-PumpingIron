@@ -139,5 +139,27 @@
             // Return true indicating success
             return true;
         }
+
+        public async Task<bool> RemoveClient(string clientId,string trainerId)
+        {
+            var trainer = await dbContext.Trainers.FirstOrDefaultAsync(t => t.TrainerId.ToString() == trainerId);
+
+            if (trainer == null)
+            {
+                return false;
+            }
+
+            var client = trainer.Clients.FirstOrDefault(c => c.ClientId.ToString() == clientId);
+
+            if (client == null)
+            {
+                return false;
+            }
+
+            trainer.Clients.Remove(client);
+            await dbContext.SaveChangesAsync();
+
+            return true;
+        }
     }
 }

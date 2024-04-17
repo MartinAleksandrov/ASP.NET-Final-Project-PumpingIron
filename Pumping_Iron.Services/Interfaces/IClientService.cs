@@ -12,5 +12,7 @@
 
         Task<ClientProgramViewModel?> GetMyProgramInfo(string userId);
 
+        Task<bool> RemoveMyTrainer(string clientId);
+
     }
 }

@@ -73,7 +73,7 @@
 
             if (model == null)
             {
-                return BadRequest();
+                return View();
             }
 
             return View(model);
@@ -107,6 +107,24 @@
             }
 
             return View(model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> RemoveTrainer()
+        {
+            var userId = User.GetId();
+
+            try
+            {
+                var result = await clientService.RemoveMyTrainer(userId);
+            }
+            catch (Exception)
+            {
+
+                ModelState.AddModelError(userId, "Unexpected error occured please try again later!");
+            }
+
+            return RedirectToAction("AllTrainers","Trainer");
         }
     }
 }

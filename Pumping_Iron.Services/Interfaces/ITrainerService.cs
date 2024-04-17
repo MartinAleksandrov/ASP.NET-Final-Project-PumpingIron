@@ -13,5 +13,7 @@
 
         Task<bool> HireTrainerAsync(HireTrainerViewModel model, string trainerId,string clientId);
 
+        Task<bool> RemoveClient(string clientId, string trainerId);
+
     }
 }

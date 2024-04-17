@@ -2,9 +2,11 @@
 
 <div class="trainer-details">
     <div class="trainer-info">
+        <h2>Trainer Details</h2>
+
         @if (Model == null)
         {
-            <p>You dont have trainer so far!!!</p>
+            <p>You don't have a trainer so far!!!</p>
         }
         else
         {
@@ -14,6 +16,7 @@
                 <p>@Model.Information</p>
             }
             <img src="@Model.ImageUrl" alt="Trainer Image" class="trainer-image" />
+            <a asp-action="RemoveTrainer" asp-controller="Client" class="btn btn-lg btn-success rounded-pill">Remove Trainer</a>
         }
     </div>
 </div>
