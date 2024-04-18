@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "My Clients";
 }
-    
+
 
 <div class="container">
     <h2>All Clients</h2>
@@ -24,7 +24,8 @@
                 }
                 else
                 {
-                    
+                    <a asp-controller="Trainer" asp-action="AddProgram" asp-route-id="@client.ClientId" class="btn btn-warning mb-2 w-100 p-3 fw-bold">Add Program</a>
+
                 }
                 @if (client.Diet != null)
                 {
@@ -33,7 +34,7 @@
                 }
                 else
                 {
-                    
+                    <a asp-controller="Trainer" asp-action="AddDiet" asp-route-id="@client.ClientId" class="btn btn-warning mb-2 w-100 p-3 fw-bold">Add Diet</a>
                 }
             </div>
             <div>

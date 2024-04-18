@@ -1,0 +1,26 @@
+﻿@model IEnumerable<AddProgramViewModel>
+
+@{
+    ViewData["Title"] = "Add Program To Client";
+}
+
+<h1 class="text-center mb-4">Add Program To Client</h1>
+
+<div class="container">
+    <div class="row">
+        @foreach (var program in Model)
+        {
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card">
+                    <img src="@program.ImageUrl" class="card-img-top" alt="Program Image" style="height: 200px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">@program.Name</h5>
+                        <p class="card-text">@program.Description</p>
+                        <p class="card-text"><small class="text-muted">Duration: @program.Duration</small></p>
+                        <a asp-controller="Trainer" asp-action="AddProgramToClient" asp-route-programId="@program.Id" asp-route-clientId="@program.ClientId" class="btn btn-warning w-100">Add Program</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

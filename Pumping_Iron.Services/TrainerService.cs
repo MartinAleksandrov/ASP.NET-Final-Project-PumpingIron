@@ -2,13 +2,12 @@
 {
     using Microsoft.EntityFrameworkCore;
     using Pumping_Iron.Data.Data;
+    using Pumping_Iron.Data.Models;
+    using Pumping_Iron.Data.ViewModels.Client;
+    using Pumping_Iron.Data.ViewModels.Trainer;
     using Pumping_Iron.Services.Interfaces;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using Pumping_Iron.Data.ViewModels.Trainer;
-    using Pumping_Iron.Data.ViewModels.Client;
-    using Pumping_Iron.Data.Models;
-    using System.Threading.Channels;
 
     public class TrainerService : ITrainerService
     {
@@ -140,7 +139,7 @@
             return true;
         }
 
-        public async Task<bool> RemoveClient(string clientId,string trainerId)
+        public async Task<bool> RemoveClient(string clientId, string trainerId)
         {
             var trainer = await dbContext.Trainers.FirstOrDefaultAsync(t => t.TrainerId.ToString() == trainerId);
 
@@ -160,6 +159,70 @@
             await dbContext.SaveChangesAsync();
 
             return true;
+        }
+
+        public async Task<IEnumerable<AddProgramViewModel>?> GetAllTrainerPrograms(string trainerId,string clientId)
+        {
+            var isExist = await FindTrainerByIdAsync(trainerId);
+
+            if (string.IsNullOrEmpty(isExist))
+            {
+                return null;
+            }
+
+            var trainerPrograms = await dbContext.Trainers
+                .Where(t => t.TrainerId.ToString() == trainerId)
+                .Include(t => t.TrainingPrograms)
+                .SelectMany(t => t.TrainingPrograms.Select(tp => new AddProgramViewModel
+                {
+                    Id = tp.Id,
+                    Name = tp.Name,
+                    Description = tp.Description,
+                    Duration = tp.Duration,
+                    ImageUrl = tp.ImageUrl,
+                    ClientId = clientId
+                }))
+                .ToListAsync();
+
+            return trainerPrograms;
+        }
+
+        public async Task<bool> AddProgramToClient(int programId, string clientId)
+        {
+            var client = await dbContext.Clients.FirstOrDefaultAsync(c => c.ClientId.ToString() == clientId);
+            var program = await dbContext.TrainingPrograms.FirstOrDefaultAsync(t => t.Id == programId);
+
+            if (client == null || program == null)
+            {
+                return false;
+            }
+
+            var result = await IsClientAlreadyHaveProgramAsync(clientId);
+
+            if (result)
+            {
+                return false;
+            }
+
+            // Assign the training program to the client's navigation property
+            client.TrainingProgram = program;
+
+            // Save changes to the database
+            await dbContext.SaveChangesAsync();
+
+            return true;
+        }
+
+        private async Task<bool> IsClientAlreadyHaveProgramAsync(string clientId)
+        {
+            var client = await dbContext.Clients.FindAsync(Guid.Parse(clientId));
+
+            if (client!.TrainingProgram != null)
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }

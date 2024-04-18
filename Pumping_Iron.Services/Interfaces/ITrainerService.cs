@@ -15,5 +15,9 @@
 
         Task<bool> RemoveClient(string clientId, string trainerId);
 
+
+        Task<IEnumerable<AddProgramViewModel>?> GetAllTrainerPrograms(string trainerId,string clientId);
+
+        Task<bool> AddProgramToClient(int programId,string clientId);
     }
 }

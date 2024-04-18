@@ -47,21 +47,21 @@
                 .Select(c => new MyClientsViewModel
                 {
                     // Map client properties to MyClientsViewModel properties
+                    ClientId = c.ClientId,
                     Name = c.Name,
                     Age = c.Age,
                     Gender = c.Gender.ToString(),
                     ImageUrl = c.ImageUrl,
-                    MembershipName = c.Membership!.TypeMembership.ToString()
-
-                    //TrainingProgram = new ClientProgramViewModel
-                    //{
-                    //    // Map training program properties to ClientProgramViewModel properties
-                    //    Id = c.TrainingProgram.Id,
-                    //    Name = c.TrainingProgram.Name,
-                    //    Description = c.TrainingProgram.Description,
-                    //    Duration = c.TrainingProgram.Duration,
-                    //    ImageUrl = c.TrainingProgram.ImageUrl
-                    //}
+                    MembershipName = c.Membership!.TypeMembership.ToString(),
+                    TrainingProgram = new ClientProgramViewModel
+                    {
+                        // Map training program properties to ClientProgramViewModel properties
+                        Id = c.TrainingProgram!.Id,
+                        Name = c.TrainingProgram.Name,
+                        Description = c.TrainingProgram.Description,
+                        Duration = c.TrainingProgram.Duration,
+                        ImageUrl = c.TrainingProgram.ImageUrl
+                    }
                 })
                 .ToListAsync();
 
@@ -93,18 +93,20 @@
         {
             var user = await IsClientExist(userId);
 
-            if (user == null || user.TrainingProgram == null || user.TrainingProgramId != 0)
+            if (user == null || user.TrainingProgramId == 0)
             {
                 return null;
             }
 
+            var program = await dbContext.TrainingPrograms.FirstOrDefaultAsync(tp => tp.Id == user.TrainingProgramId);
+
             var programViewModel = new ClientProgramViewModel()
             {
-                Id = user.TrainingProgram.Id,
-                Name = user.TrainingProgram.Name,
-                Description = user.TrainingProgram.Description,
-                ImageUrl = user.TrainingProgram.ImageUrl,
-                Duration = user.TrainingProgram.Duration
+                Id = program!.Id,
+                Name = program.Name,
+                Description = program.Description,
+                ImageUrl = program.ImageUrl,
+                Duration = program.Duration
             };
 
             return programViewModel;

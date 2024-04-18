@@ -36,5 +36,40 @@
             return View(model);
         }
 
+        [HttpGet]
+        [Authorize(Roles = "Coach")]
+        public async Task<IActionResult> AddProgram(string id)
+        {
+            var trainerId = User.GetId();
+
+            var model = await trainerService.GetAllTrainerPrograms(trainerId, id);
+
+            if (model == null)
+            {
+                return View();
+            }
+
+            return View(model);
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Coach")]
+        public async Task<IActionResult> AddProgramToClient(int programId, string clientId)
+        {
+            try
+            {
+                var addProgram = await trainerService.AddProgramToClient(programId, clientId);
+
+                if (addProgram)
+                {
+                    return RedirectToAction("TrainerClients", "Client");
+                }
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError(clientId,"Unexpected error occured please try again later!");
+            }
+            return BadRequest();
+        }
     }
 }
