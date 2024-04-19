@@ -4,15 +4,16 @@
     ViewData["Title"] = "My Clients";
 }
 
+<link rel="stylesheet" href="~/css/MyClients.css">
 
 <div class="container">
-    <h2>All Clients</h2>
+    <h2 class="title">@ViewData["Title"]</h2>
     <hr />
 
     @foreach (var client in Model)
     {
-        <div class="client-details">
-            <div>
+        <div class="client-card">
+            <div class="client-info">
                 <h4>@client.Name</h4>
                 <p><strong>Age:</strong> @client.Age</p>
                 <p><strong>Gender:</strong> @client.Gender</p>
@@ -20,29 +21,28 @@
                 @if (client.TrainingProgram != null)
                 {
                     <!-- Button for Client Program -->
-                    <a asp-controller="TrainingProgram" asp-action="Details" asp-route-id="@client.TrainingProgram.Id" class="btn btn-warning mb-2 w-100 p-3 fw-bold">Program Details</a>
+                    <a asp-controller="TrainingProgram" asp-action="Details" asp-route-id="@client.TrainingProgram.Id" class="btn">Program Details</a>
+                    <a asp-controller="Trainer" asp-action="RemoveProgram" asp-route-id="@client.TrainingProgram.Id" class="btn">Remove Program</a>
                 }
                 else
                 {
-                    <a asp-controller="Trainer" asp-action="AddProgram" asp-route-id="@client.ClientId" class="btn btn-warning mb-2 w-100 p-3 fw-bold">Add Program</a>
-
+                    <a asp-controller="Trainer" asp-action="AddProgram" asp-route-id="@client.ClientId" class="btn">Add Program</a>
                 }
                 @if (client.Diet != null)
                 {
                     <!-- Button for Client Diet -->
-                    <a asp-controller="Diet" asp-action="Details" asp-route-id="@client.Diet.Id" class="btn btn-warning mb-2 w-100 p-3 fw-bold">Diet Details</a>
+                    <a asp-controller="Diet" asp-action="Details" asp-route-id="@client.Diet.Id" class="btn">Diet Details</a>
+                    <a asp-controller="Trainer" asp-action="RemoveDiet" asp-route-id="@client.Diet.Id" class="btn">Remove Diet</a>
                 }
                 else
                 {
-                    <a asp-controller="Trainer" asp-action="AddDiet" asp-route-id="@client.ClientId" class="btn btn-warning mb-2 w-100 p-3 fw-bold">Add Diet</a>
+                    <a asp-controller="Trainer" asp-action="AddDiet" asp-route-id="@client.ClientId" class="btn">Add Diet</a>
                 }
             </div>
-            <div>
+            <div class="client-image-container">
                 <img src="@client.ImageUrl" alt="Client Image" class="client-image" />
             </div>
         </div>
         <hr />
     }
 </div>
-
-<link rel="stylesheet" href="~/css/MyClients.css">

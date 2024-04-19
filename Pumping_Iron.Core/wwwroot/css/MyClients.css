@@ -1,37 +1,51 @@
 ﻿.container {
+    max-width: 800px;
+    margin: 0 auto;
     padding: 20px;
 }
 
-.client-details {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.title {
+    color: #333;
+    text-align: center;
+}
+
+.client-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
     margin-bottom: 20px;
 }
 
-    .client-details > div {
-        flex: 1;
-    }
+.client-info h4 {
+    margin-bottom: 5px;
+    color: #333;
+}
 
-    .client-details h4 {
-        margin-bottom: 10px;
-    }
+.client-info p {
+    margin: 5px 0;
+    color: #666;
+}
 
-    .client-details p {
-        margin: 5px 0;
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+    .btn:hover {
+        background-color: #0056b3;
     }
 
 .client-image {
-    width: 300px;
-    height: 250px;
-    object-fit: cover;
-    border-radius: 10px;
-}
-
-.client-details .btn {
-    margin-top: 10px;
-}
-
-hr {
-    margin: 20px 0;
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
 }

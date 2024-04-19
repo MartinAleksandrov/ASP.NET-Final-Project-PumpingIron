@@ -1,0 +1,25 @@
+﻿@model IEnumerable<AddDietViewModel>
+
+@{
+    ViewData["Title"] = "Add Diet To Client";
+}
+
+<h1 class="text-center mb-4">Add Diet To Client</h1>
+
+<div class="container">
+    <div class="row">
+        @foreach (var diet in Model)
+        {
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card">
+                    <img src="@diet.ImageUrl" class="card-img-top" alt="Diet Image" style="height: 200px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">@diet.Name</h5>
+                        <p class="card-text">@diet.Description</p>
+                        <a asp-controller="Trainer" asp-action="AddDietToClient" asp-route-dietId="@diet.Id" asp-route-clientId="@diet.ClientId" class="btn btn-warning w-100">Add Program</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
