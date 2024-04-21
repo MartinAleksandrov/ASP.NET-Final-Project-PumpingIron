@@ -4,6 +4,7 @@
     using Pumping_Iron.Data.Data;
     using Pumping_Iron.Data.Models;
     using Pumping_Iron.Data.ViewModels.Diet;
+    using Pumping_Iron.Data.ViewModels.Trainer;
     using Pumping_Iron.Services.Interfaces;
 
     public class DietService : IDietService

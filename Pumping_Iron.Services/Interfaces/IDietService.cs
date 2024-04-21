@@ -1,6 +1,8 @@
 ﻿namespace Pumping_Iron.Services.Interfaces
 {
     using Pumping_Iron.Data.ViewModels.Diet;
+    using Pumping_Iron.Data.ViewModels.Trainer;
+
     public interface IDietService
     {
         Task<IEnumerable<AllDietsViewModel>> AllDietsAsync();
@@ -12,6 +14,5 @@
         Task<bool> CreateDietAsync(CreateDietViewModel model, string trainerId);
 
         Task<IEnumerable<MyDietsViewModel>?> GetMyDietsAsync(string trainerId);
-
     }
 }

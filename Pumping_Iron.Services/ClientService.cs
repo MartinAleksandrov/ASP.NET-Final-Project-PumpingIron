@@ -40,30 +40,38 @@
 
             // Retrieve the clients associated with the trainer
             var myClients = await dbContext.Clients
-                .AsNoTracking()
-                .Where(c => c.TrainerId.ToString() == trainerId)
-                .Include(c => c.Membership)
-                .Include(c => c.TrainingProgram)
-                .Select(c => new MyClientsViewModel
-                {
-                    // Map client properties to MyClientsViewModel properties
-                    ClientId = c.ClientId,
-                    Name = c.Name,
-                    Age = c.Age,
-                    Gender = c.Gender.ToString(),
-                    ImageUrl = c.ImageUrl,
-                    MembershipName = c.Membership!.TypeMembership.ToString(),
-                    TrainingProgram = new ClientProgramViewModel
+                    .AsNoTracking()
+                    .Where(c => c.TrainerId.ToString() == trainerId)
+                    .Include(c => c.Membership)
+                    .Include(c => c.TrainingProgram)
+                    .Select(c => new MyClientsViewModel
                     {
-                        // Map training program properties to ClientProgramViewModel properties
-                        Id = c.TrainingProgram!.Id,
-                        Name = c.TrainingProgram.Name,
-                        Description = c.TrainingProgram.Description,
-                        Duration = c.TrainingProgram.Duration,
-                        ImageUrl = c.TrainingProgram.ImageUrl
-                    }
-                })
-                .ToListAsync();
+                        // Map client properties to MyClientsViewModel properties
+                        ClientId = c.ClientId,
+                        Name = c.Name,
+                        Age = c.Age,
+                        Gender = c.Gender.ToString(),
+                        ImageUrl = c.ImageUrl,
+                        MembershipName = c.Membership!.TypeMembership.ToString(),
+                        TrainingProgram = c.TrainingProgram != null ? new ClientProgramViewModel
+                        {
+                            // Map training program properties to ClientProgramViewModel properties
+                            Id = c.TrainingProgram.Id,
+                            Name = c.TrainingProgram.Name,
+                            Description = c.TrainingProgram.Description,
+                            Duration = c.TrainingProgram.Duration,
+                            ImageUrl = c.TrainingProgram.ImageUrl
+                        } : null,// Return null if TrainingProgram is null
+                        Diet = c.Diet != null ? new ClientDietViewModel
+                        {
+                            // Map training program properties to ClientProgramViewModel properties
+                            Id = c.Diet.Id,
+                            Name = c.Diet.Name,
+                            Description = c.Diet.Description,
+                            ImageUrl = c.Diet.ImageUrl
+                        } : null// Return null if Diet is null
+                    })
+                    .ToListAsync();
 
             // Return the collection of clients associated with the trainer
             return myClients;
@@ -144,7 +152,7 @@
                 dbContext.Clients.Remove(client);
                 await dbContext.SaveChangesAsync();
 
-                var isClientRemovedFromTrainerClients = await trainerService.RemoveClient(clientId,client.TrainerId.ToString()!);
+                var isClientRemovedFromTrainerClients = await trainerService.RemoveClient(clientId, client.TrainerId.ToString()!);
 
                 return true;
             }

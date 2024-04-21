@@ -1,9 +1,11 @@
 ﻿namespace Pumping_Iron.Services
 {
     using Microsoft.EntityFrameworkCore;
+    using Microsoft.VisualStudio.Web.CodeGeneration.Design;
     using Pumping_Iron.Data.Data;
     using Pumping_Iron.Data.Models;
     using Pumping_Iron.Data.ViewModels.Client;
+    using Pumping_Iron.Data.ViewModels.Diet;
     using Pumping_Iron.Data.ViewModels.Trainer;
     using Pumping_Iron.Services.Interfaces;
     using System.Collections.Generic;
@@ -206,7 +208,60 @@
 
             // Assign the training program to the client's navigation property
             client.TrainingProgram = program;
+            program.Clients.Add(client);
 
+            // Save changes to the database
+            await dbContext.SaveChangesAsync();
+
+            return true;
+        }
+
+
+        public async Task<IEnumerable<AddDietViewModel>?> GetAllTrainerDiets(string trainerId, string clientId)
+        {
+            var isExist = await FindTrainerByIdAsync(trainerId);
+
+            if (string.IsNullOrEmpty(isExist))
+            {
+                return null;
+            }
+
+            var trainerDiets = await dbContext.Trainers
+                .Where(t => t.TrainerId.ToString() == trainerId)
+                .Include(t => t.Diets)
+                .SelectMany(t => t.Diets.Select(tp => new AddDietViewModel
+                {
+                    Id = tp.Id,
+                    Name = tp.Name,
+                    Description = tp.Description,
+                    ImageUrl = tp.ImageUrl,
+                    ClientId = clientId
+                }))
+                .ToListAsync();
+
+            return trainerDiets;
+        }
+
+        public async Task<bool> AddDietToClient(int dietId, string clientId)
+        {
+            var client = await dbContext.Clients.FirstOrDefaultAsync(c => c.ClientId.ToString() == clientId);
+            var diet = await dbContext.Diets.FirstOrDefaultAsync(t => t.Id == dietId);
+
+            if (client == null || diet == null)
+            {
+                return false;
+            }
+
+            var result = await IsClientAlreadyHaveDietAsync(clientId);
+
+            if (result)
+            {
+                return false;
+            }
+
+            // Assign the diet to the client's navigation property
+            client.Diet = diet;
+            diet.Clients.Add(client);
             // Save changes to the database
             await dbContext.SaveChangesAsync();
 
@@ -219,6 +274,50 @@
 
             if (client!.TrainingProgram != null)
             {
+                return true;
+            }
+
+            return false;
+        }
+
+        private async Task<bool> IsClientAlreadyHaveDietAsync(string clientId)
+        {
+            var client = await dbContext.Clients.FindAsync(Guid.Parse(clientId));
+
+            if (client!.Diet != null)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public async Task<bool> RemoveProgramFromClientAsync(int programId, string clientId)
+        {
+            var client = await dbContext.Clients.FirstOrDefaultAsync(c => c.ClientId.ToString() == clientId);
+            var trainingProgram = await dbContext.TrainingPrograms.FirstOrDefaultAsync(tp => tp.Id == programId);
+
+            if (client != null && client.TrainingProgramId == programId && trainingProgram != null)
+            {
+                client.TrainingProgram = null;
+                trainingProgram.Clients.Remove(client);
+                await dbContext.SaveChangesAsync(); 
+                return true;
+            }
+
+            return false;
+        }
+
+        public async Task<bool> RemoveDietFromClientAsync(int dietId, string clientId)
+        {
+            var client = await dbContext.Clients.FirstOrDefaultAsync(c => c.ClientId.ToString() == clientId);
+            var diet = await dbContext.Diets.FirstOrDefaultAsync(d => d.Id == dietId);
+
+            if (client != null && client.DietId == dietId && diet != null)
+            {
+                client.Diet = null;
+                diet.Clients.Remove(client);
+                await dbContext.SaveChangesAsync();
                 return true;
             }
 
