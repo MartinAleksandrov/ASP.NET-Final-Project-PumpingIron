@@ -1,4 +1,6 @@
-﻿namespace Pumping_Iron.Data.ViewModels.Client
+﻿using Pumping_Iron.Data.Data.Models.Enums;
+
+namespace Pumping_Iron.Data.ViewModels.Client
 {
     public class MyClientsViewModel
     {
