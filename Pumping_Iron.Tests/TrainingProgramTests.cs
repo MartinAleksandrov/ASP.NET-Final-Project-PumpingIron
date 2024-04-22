@@ -187,7 +187,7 @@ namespace Pumping_Iron.Tests
             var model = new CreateProgramViewModel
             {
                 Id = 1,
-                Name = "Existing Program", // Same name as existing program
+                Name = "Existing Program", 
                 Description = "Description of New Program",
                 Duration = 10,
                 ImageUrl = "www.pic1.com",
@@ -230,9 +230,8 @@ namespace Pumping_Iron.Tests
 
             var result = await trainingProgramServiceMock.AllTrainingProgramsAsync();
 
-            // Assert
             Assert.IsNotNull(result);
-            Assert.That(result.Count(), Is.EqualTo(3)); // Assuming 3 programs were seeded
+            Assert.That(result.Count(), Is.EqualTo(3)); 
             Assert.IsTrue(result.Any(p => p.Id == 1 && p.Name == "Program 1" && p.Description == "Description 1" && p.Duration == 10 && p.ImageUrl == "image1.jpg"));
             Assert.IsTrue(result.Any(p => p.Id == 2 && p.Name == "Program 2" && p.Description == "Description 2" && p.Duration == 20 && p.ImageUrl == "image2.jpg"));
             Assert.IsTrue(result.Any(p => p.Id == 3 && p.Name == "Program 3" && p.Description == "Description 3" && p.Duration == 30 && p.ImageUrl == "image3.jpg"));
