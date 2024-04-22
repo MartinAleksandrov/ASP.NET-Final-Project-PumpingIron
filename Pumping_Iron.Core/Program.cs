@@ -1,6 +1,7 @@
 namespace Pumping_Iron.Core
 {
     using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
     using Pumping_Iron.Core.Controllers;
     using Pumping_Iron.Data.Data;
@@ -42,17 +43,20 @@ namespace Pumping_Iron.Core
             builder.Services.AddScoped<IDietService, DietService>();
             builder.Services.AddScoped<ITrainingProgramService, TrainingProgramService>();
             builder.Services.AddScoped<IClientService, ClientService>();
-
+            builder.Services.AddControllersWithViews(options => { options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute()); });
+            
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
+                app.UseDeveloperExceptionPage();
                 app.UseMigrationsEndPoint();
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/Home/Error/500");
+                app.UseStatusCodePagesWithRedirects("/Home/Error?statusCode={0}");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
