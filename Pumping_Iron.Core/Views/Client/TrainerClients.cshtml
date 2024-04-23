@@ -1,13 +1,11 @@
-﻿@model IEnumerable<MyClientsViewModel>
+﻿@model PaginatedList<MyClientsViewModel>
 
 @{
     ViewData["Title"] = "My Clients";
 }
 
-<link rel="stylesheet" href="~/css/MyClients.css">
-
 <div class="container">
-    <h2 class="title">@ViewData["Title"]</h2>
+    <h2 class="title">All Clients</h2>
     <hr />
 
     @foreach (var client in Model)
@@ -20,23 +18,31 @@
                 <p><strong>Membership:</strong> @client.MembershipName</p>
                 @if (client.TrainingProgram != null)
                 {
-                    <!-- Button for Client Program -->
-                    <a asp-controller="TrainingProgram" asp-action="Details" asp-route-id="@client.TrainingProgram.Id" class="btn">Program Details</a>
-                    <a asp-controller="Trainer" asp-action="RemoveProgram" asp-route-id="@client.TrainingProgram.Id" class="btn">Remove Program</a>
+                    <div class="action-buttons">
+                        <!-- Button for Client Program -->
+                        <a asp-controller="TrainingProgram" asp-action="Details" asp-route-id="@client.TrainingProgram.Id" class="btn btn-primary">Program Details</a>
+                        <a asp-controller="Trainer" asp-action="RemoveProgram" asp-route-id="@client.TrainingProgram.Id" asp-route-clientId="@client.ClientId" class="btn btn-danger">Remove Program</a>
+                    </div>
                 }
                 else
                 {
-                    <a asp-controller="Trainer" asp-action="AddProgram" asp-route-id="@client.ClientId" class="btn">Add Program</a>
+                    <div class="action-buttons">
+                        <a asp-controller="Trainer" asp-action="AddProgram" asp-route-id="@client.ClientId" class="btn btn-success">Add Program</a>
+                    </div>
                 }
                 @if (client.Diet != null)
                 {
-                    <!-- Button for Client Diet -->
-                    <a asp-controller="Diet" asp-action="Details" asp-route-id="@client.Diet.Id" class="btn">Diet Details</a>
-                    <a asp-controller="Trainer" asp-action="RemoveDiet" asp-route-id="@client.Diet.Id" class="btn">Remove Diet</a>
+                    <div class="action-buttons">
+                        <!-- Button for Client Diet -->
+                        <a asp-controller="Diet" asp-action="Details" asp-route-id="@client.Diet.Id" class="btn btn-primary">Diet Details</a>
+                        <a asp-controller="Trainer" asp-action="RemoveDiet" asp-route-id="@client.Diet.Id" asp-route-clientId="@client.ClientId" class="btn btn-danger">Remove Diet</a>
+                    </div>
                 }
                 else
                 {
-                    <a asp-controller="Trainer" asp-action="AddDiet" asp-route-id="@client.ClientId" class="btn">Add Diet</a>
+                    <div class="action-buttons">
+                        <a asp-controller="Trainer" asp-action="AddDiet" asp-route-id="@client.ClientId" class="btn btn-success">Add Diet</a>
+                    </div>
                 }
             </div>
             <div class="client-image-container">
@@ -45,4 +51,35 @@
         </div>
         <hr />
     }
+
+    <!-- Pagination -->
+    <nav aria-label="Client Pagination">
+        <ul class="pagination justify-content-center">
+            @if (Model.HasPreviousPage)
+            {
+                <li class="page-item">
+                    <a class="page-link" href="?page=@(Model.PageIndex - 1)" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            }
+            @for (var i = 1; i <= Model.TotalPages; i++)
+            {
+                <li class="page-item @(i == Model.PageIndex ? "active" : "")">
+                    <a class="page-link" href="?page=@i">@i</a>
+                </li>
+            }
+            @if (Model.HasNextPage)
+            {
+                <li class="page-item">
+                    <a class="page-link" href="?page=@(Model.PageIndex + 1)" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            }
+        </ul>
+    </nav>
+
 </div>
+
+<link rel="stylesheet" href="~/css/MyClients.css">

@@ -3,12 +3,9 @@ namespace Pumping_Iron.Core
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
-    using Pumping_Iron.Core.Controllers;
     using Pumping_Iron.Data.Data;
-    using Pumping_Iron.Infrastructure.Extensions;
     using Pumping_Iron.Services;
     using Pumping_Iron.Services.Interfaces;
-    using System.Security.Claims;
 
 
     public class Program
