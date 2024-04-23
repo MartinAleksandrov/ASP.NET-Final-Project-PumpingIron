@@ -3,6 +3,7 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Pumping_Iron.Infrastructure.Extensions;
+    using Pumping_Iron.Services;
     using Pumping_Iron.Services.Interfaces;
 
     public class TrainerController : Controller
@@ -67,9 +68,77 @@
             }
             catch (Exception)
             {
-                ModelState.AddModelError(clientId,"Unexpected error occured please try again later!");
+                ModelState.AddModelError(clientId, "Unexpected error occured please try again later!");
             }
             return BadRequest();
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Coach")]
+        public async Task<IActionResult> AddDiet(string id)
+        {
+            var trainerId = User.GetId();
+
+            var model = await trainerService.GetAllTrainerDiets(trainerId, id);
+
+            if (model == null)
+            {
+                return View();
+            }
+
+            return View(model);
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Coach")]
+        public async Task<IActionResult> AddDietToClient(int dietId, string clientId)
+        {
+            try
+            {
+                var addDiet = await trainerService.AddDietToClient(dietId, clientId);
+
+                if (addDiet)
+                {
+                    return RedirectToAction("TrainerClients", "Client");
+                }
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError(clientId, "Unexpected error occured please try again later!");
+            }
+            return BadRequest();
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> RemoveProgram(int id, string clientId)
+        {
+
+            var removeProgram = await trainerService.RemoveProgramFromClientAsync(id, clientId);
+
+            if (removeProgram)
+            {
+                return RedirectToAction("TrainerClients", "Client");
+            }
+
+            ModelState.AddModelError(clientId, "Unexpected error occured please try again later");
+
+            return StatusCode(StatusCodes.Status500InternalServerError);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> RemoveDiet(int id, string clientId)
+        {
+            var removeDiet = await trainerService.RemoveDietFromClientAsync(id, clientId);
+
+            if (removeDiet)
+            {
+                return RedirectToAction("TrainerClients", "Client");
+            }
+
+            ModelState.AddModelError(clientId, "Unexpected error occured please try again later");
+
+            return StatusCode(StatusCodes.Status500InternalServerError);
         }
     }
 }

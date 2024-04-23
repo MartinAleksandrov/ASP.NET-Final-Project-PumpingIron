@@ -269,7 +269,7 @@ namespace Pumping_Iron.Data.Data.Migrations
 
                     b.HasIndex("TrainingProgramId");
 
-                    b.ToTable("Clients");
+                    b.ToTable("Clients", (string)null);
                 });
 
             modelBuilder.Entity("Pumping_Iron.Data.Models.Diet", b =>
@@ -302,7 +302,7 @@ namespace Pumping_Iron.Data.Data.Migrations
 
                     b.HasIndex("TrainerId");
 
-                    b.ToTable("Diets");
+                    b.ToTable("Diets", (string)null);
                 });
 
             modelBuilder.Entity("Pumping_Iron.Data.Models.GymParticipants", b =>
@@ -317,7 +317,7 @@ namespace Pumping_Iron.Data.Data.Migrations
 
                     b.HasIndex("ParticipantId");
 
-                    b.ToTable("GymParticipants");
+                    b.ToTable("GymParticipants", (string)null);
                 });
 
             modelBuilder.Entity("Pumping_Iron.Data.Models.Membership", b =>
@@ -339,7 +339,7 @@ namespace Pumping_Iron.Data.Data.Migrations
 
                     b.HasKey("MembershipId");
 
-                    b.ToTable("Memberships");
+                    b.ToTable("Memberships", (string)null);
                 });
 
             modelBuilder.Entity("Pumping_Iron.Data.Models.Trainer", b =>
@@ -371,7 +371,7 @@ namespace Pumping_Iron.Data.Data.Migrations
 
                     b.HasKey("TrainerId");
 
-                    b.ToTable("Trainers");
+                    b.ToTable("Trainers", (string)null);
                 });
 
             modelBuilder.Entity("Pumping_Iron.Data.Models.TrainingProgram", b =>
@@ -408,7 +408,7 @@ namespace Pumping_Iron.Data.Data.Migrations
 
                     b.HasIndex("TrainerId");
 
-                    b.ToTable("TrainingPrograms");
+                    b.ToTable("TrainingPrograms", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

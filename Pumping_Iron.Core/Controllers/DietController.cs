@@ -4,6 +4,7 @@
     using Microsoft.AspNetCore.Mvc;
     using Pumping_Iron.Data.ViewModels.Diet;
     using Pumping_Iron.Infrastructure.Extensions;
+    using Pumping_Iron.Services;
     using Pumping_Iron.Services.Interfaces;
 
     public class DietController : Controller
@@ -27,7 +28,7 @@
         [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
-            var model = await dietService.GetDetaisByIdAsync(id);
+            var model = await dietService.GetDetailsByIdAsync(id);
 
             if (model == null)
             {
@@ -88,6 +89,6 @@
 
             // Return the TrainerDiets view with the retrieved diets
             return View(diets);
-        } 
+        }
     }
 }

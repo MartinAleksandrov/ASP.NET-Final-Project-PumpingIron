@@ -20,22 +20,29 @@
 
         [HttpGet]
         [Authorize(Roles = "Coach")]
-        public async Task<IActionResult> TrainerClients()
+        public async Task<IActionResult> TrainerClients(int? page)
         {
-            var userId = User.GetId();
 
-            // Retrieve clients associated with the current trainer
-            var clients = await clientService.GetMyClientsAsync(userId);
+            var userId = User.GetId();
+            const int pageSize = 4; // Set the number of clients per page
+
+            // Default to page 1 if no page number is specified
+            int pageNumber = page ?? 1;
+
+            // Retrieve clients associated with the current trainer with pagination
+            var clients = await clientService.GetMyClientsAsync(userId, pageNumber, pageSize);
 
             // Check if clients were successfully retrieved
             if (clients == null)
             {
-                return BadRequest("Trainer does not exist or error occurred.");
+                return BadRequest("Trainer does not exist or an error occurred.");
             }
 
             // If clients were successfully retrieved, return a View with the clients data
             return View(clients);
         }
+
+
 
         [HttpGet]
         public IActionResult Hire(string trainerId)
