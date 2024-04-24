@@ -7,42 +7,44 @@
 <h1>@ViewData["Title"]</h1>
 
 <form asp-action="Hire" method="post">
-    <input type="hidden" name="TrainerId" value="@Model.TrainerId" />
+    <input type="hidden" asp-for="TrainerId" />
 
     <div class="mb-3">
-        <label asp-for="@Model.Name" class="form-label-add-edit">Name</label>
-        <input asp-for="@Model.Name" class="form-control" aria-required="true" placeholder="Your Name" />
-        <span asp-validation-for="@Model.Name" class="text-danger"></span>
+        <label for="Name" class="form-label-add-edit">Name</label>
+        <input type="text" id="Name" name="Name" class="form-control" placeholder="Your Name" required />
+        <span class="text-danger" data-valmsg-for="Name" data-valmsg-replace="true"></span>
     </div>
     <div class="mb-3">
-        <label asp-for="@Model.Age" class="form-label-add-edit">Age</label>
-        <input asp-for="@Model.Age" class="form-control" placeholder="Your Age" />
-        <span asp-validation-for="@Model.Age" class="text-danger"></span>
+        <label for="Age" class="form-label-add-edit">Age</label>
+        <input type="number" id="Age" name="Age" class="form-control" placeholder="Your Age" required />
+        <span class="text-danger" data-valmsg-for="Age" data-valmsg-replace="true"></span>
     </div>
     <div class="mb-3">
-        <label asp-for="@Model.ImageUrl" class="form-label-add-edit">Image URL</label>
-        <input asp-for="@Model.ImageUrl" class="form-control" placeholder="Image URL" />
-        <span asp-validation-for="@Model.ImageUrl" class="text-danger"></span>
+        <label for="ImageUrl" class="form-label-add-edit">Image URL</label>
+        <input type="url" id="ImageUrl" name="ImageUrl" class="form-control" placeholder="Image URL" required />
+        <span class="text-danger" data-valmsg-for="ImageUrl" data-valmsg-replace="true"></span>
     </div>
     <div class="form-group">
-        <label asp-for="@Model.Gender">Gender:</label>
-        <select asp-for="@Model.Gender" class="form-control">
+        <label for="Gender">Gender:</label>
+        <select id="Gender" name="Gender" class="form-control" required>
+            <option value="">Select Gender</option>
             <option value="Male">Male</option>
             <option value="Female">Female</option>
         </select>
-        <span asp-validation-for="@Model.Gender" class="text-danger"></span>
+        <span class="text-danger" data-valmsg-for="Gender" data-valmsg-replace="true"></span>
     </div>
     <div class="form-group">
-        <label asp-for="@Model.Membership">Membership:</label>
-        <select asp-for="@Model.Membership" class="form-control">
+        <label for="Membership">Membership:</label>
+        <select id="Membership" name="Membership" class="form-control" required>
+            <option value="">Select Membership</option>
             <option value="Monthly">Monthly</option>
             <option value="ThreeMonths">ThreeMonths</option>
             <option value="HalfYear">HalfYear</option>
             <option value="Yearly">Yearly</option>
         </select>
-        <span asp-validation-for="@Model.Membership" class="text-danger"></span>
+        <span class="text-danger" data-valmsg-for="Membership" data-valmsg-replace="true"></span>
     </div>
     <div class="mb-3">
-        <input class="btn btn-warning mb-2 w-100 p-3 fw-bold" type="submit" value="Hire" />
+        <input type="submit" class="btn btn-warning mb-2 w-100 p-3 fw-bold" value="Hire" />
     </div>
 </form>
