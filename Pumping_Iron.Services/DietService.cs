@@ -4,7 +4,6 @@
     using Pumping_Iron.Data.Data;
     using Pumping_Iron.Data.Models;
     using Pumping_Iron.Data.ViewModels.Diet;
-    using Pumping_Iron.Data.ViewModels.Trainer;
     using Pumping_Iron.Services.Interfaces;
 
     public class DietService : IDietService
@@ -36,6 +35,7 @@
             return allDiets;
         }
 
+        //Create Diet
         public async Task<bool> CreateDietAsync(CreateDietViewModel model, string trainerId)
         {
             // Check if the diet already exists with the given id or name
@@ -81,7 +81,7 @@
         }
 
         //Map trainer entity to ViewModel if such Diet exist
-        public async Task<AllDietsViewModel?> GetDetaisByIdAsync(int id)
+        public async Task<AllDietsViewModel?> GetDetailsByIdAsync(int id)
         {
             var result = await ExistByIdAsync(id);
 
@@ -133,6 +133,24 @@
 
             // Return the list of trainer's diets
             return trainerDiets;
+        }
+
+        //Find specific diet
+        public async Task<IEnumerable<AllDietsViewModel>> SearchDietsAsync(string searchTerm)
+        {
+            var matchingDiets = await dbContext.Diets
+                .AsNoTracking()
+                .Where(d => d.Name.Contains(searchTerm))
+                .Select(d => new AllDietsViewModel()
+                {
+                    Id = d.Id,
+                    Name = d.Name,
+                    Description = d.Description,
+                    ImageUrl = d.ImageUrl,
+                })
+                .ToListAsync();
+
+            return matchingDiets;
         }
     }
 }

@@ -5,7 +5,7 @@
 
     public interface IClientService
     {
-        Task<IEnumerable<MyClientsViewModel>?> GetMyClientsAsync(string trainerId);
+        Task<PaginatedList<MyClientsViewModel>?> GetMyClientsAsync(string trainerId, int pageNumber, int pageSize);
 
         Task<TrainerDetailsViewModel?> GetMyTrainerInfo(string userId);
         Task<ClientDietViewModel?> GetMyDietInfo(string userId);

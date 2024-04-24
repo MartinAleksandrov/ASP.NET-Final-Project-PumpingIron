@@ -1,7 +1,6 @@
 ﻿namespace Pumping_Iron.Services
 {
     using Microsoft.EntityFrameworkCore;
-    using Microsoft.VisualStudio.Web.CodeGeneration.Design;
     using Pumping_Iron.Data.Data;
     using Pumping_Iron.Data.Models;
     using Pumping_Iron.Data.ViewModels.Client;
@@ -81,6 +80,7 @@
             return trainer;
         }
 
+        //Check if client already have coach
         public async Task<bool> IsClientAlreadyHireTrainerAsync(string clientId)
         {
             var client = await dbContext.Clients.FindAsync(Guid.Parse(clientId));
@@ -99,6 +99,7 @@
             return true;
         }
 
+        //Add trainer to client
         public async Task<bool> HireTrainerAsync(HireTrainerViewModel model, string trainerId, string clientId)
         {
             var client = await dbContext.Clients.FirstOrDefaultAsync(c => c.ClientId.ToString() == clientId);
@@ -136,11 +137,14 @@
                 dbContext.Entry(client).State = EntityState.Added;
                 trainer.Clients.Add(client);
                 await dbContext.SaveChangesAsync();
-            }
-            // Return true indicating success
-            return true;
-        }
+                return true;
 
+            }
+            return false;
+            // Return true indicating success
+        }
+        
+        //Remove client
         public async Task<bool> RemoveClient(string clientId, string trainerId)
         {
             var trainer = await dbContext.Trainers.FirstOrDefaultAsync(t => t.TrainerId.ToString() == trainerId);
@@ -189,6 +193,7 @@
             return trainerPrograms;
         }
 
+        //Assign program to client
         public async Task<bool> AddProgramToClient(int programId, string clientId)
         {
             var client = await dbContext.Clients.FirstOrDefaultAsync(c => c.ClientId.ToString() == clientId);
@@ -216,7 +221,7 @@
             return true;
         }
 
-
+        //Gets all Diets from current trainer
         public async Task<IEnumerable<AddDietViewModel>?> GetAllTrainerDiets(string trainerId, string clientId)
         {
             var isExist = await FindTrainerByIdAsync(trainerId);
@@ -242,6 +247,7 @@
             return trainerDiets;
         }
 
+        //Assign diet to client
         public async Task<bool> AddDietToClient(int dietId, string clientId)
         {
             var client = await dbContext.Clients.FirstOrDefaultAsync(c => c.ClientId.ToString() == clientId);
@@ -267,7 +273,8 @@
 
             return true;
         }
-
+        
+        //Check if client already have training program
         private async Task<bool> IsClientAlreadyHaveProgramAsync(string clientId)
         {
             var client = await dbContext.Clients.FindAsync(Guid.Parse(clientId));
@@ -279,7 +286,8 @@
 
             return false;
         }
-
+       
+        //Check if client already have diet
         private async Task<bool> IsClientAlreadyHaveDietAsync(string clientId)
         {
             var client = await dbContext.Clients.FindAsync(Guid.Parse(clientId));
@@ -292,6 +300,7 @@
             return false;
         }
 
+        //Removes training program from client
         public async Task<bool> RemoveProgramFromClientAsync(int programId, string clientId)
         {
             var client = await dbContext.Clients.FirstOrDefaultAsync(c => c.ClientId.ToString() == clientId);
@@ -307,7 +316,8 @@
 
             return false;
         }
-
+        
+        //Removes diet from client
         public async Task<bool> RemoveDietFromClientAsync(int dietId, string clientId)
         {
             var client = await dbContext.Clients.FirstOrDefaultAsync(c => c.ClientId.ToString() == clientId);

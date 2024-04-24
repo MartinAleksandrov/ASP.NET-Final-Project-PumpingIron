@@ -28,5 +28,7 @@
 
         Task<bool> RemoveDietFromClientAsync(int dietId, string clientId);
 
+        Task<bool> IsClientAlreadyHireTrainerAsync(string clientId);
+
     }
 }
