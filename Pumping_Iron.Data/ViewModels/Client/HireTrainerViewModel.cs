@@ -1,6 +1,5 @@
 ﻿namespace Pumping_Iron.Data.ViewModels.Client
 {
-    using Pumping_Iron.Data.Data.Models.Enums;
     using Pumping_Iron.Data.Models;
     using Pumping_Iron.Data.Models.Enums;
     using System.ComponentModel.DataAnnotations;
@@ -12,23 +11,23 @@
         public Guid TrainerId { get; set; }
 
 
-        [Required]
+        [Required(ErrorMessage = "Name is required")]
         [StringLength(ClientNameMaxLength,MinimumLength = ClientNameMinLength)]
         public string Name { get; set; } = string.Empty;
 
 
-        [Required]
+        [Required(ErrorMessage = "Age is required")]
         [Range(ClientMinAge,ClientMaxAge)]
         public int Age { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Image URL is required")]
         [MaxLength(ImageUrlMaxLength)]
         public string ImageUrl { get; set; } = string.Empty;
 
-        [Required]
+        [Required(ErrorMessage = "Gender is required")]
         public Gender Gender { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Membership type is required")]
         public Membership Membership { get; set; } = null!;
     } 
 }

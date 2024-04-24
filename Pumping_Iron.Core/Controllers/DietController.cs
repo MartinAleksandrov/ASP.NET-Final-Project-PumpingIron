@@ -17,10 +17,21 @@
         }
 
         [HttpGet]
-        [Authorize(Roles ="Client")]
-        public async Task<IActionResult> AllDiets()
+        [Authorize(Roles = "Client")]
+        public async Task<IActionResult> AllDiets(string search)
         {
-            var allDiets = await dietService.AllDietsAsync();
+            IEnumerable<AllDietsViewModel> allDiets;
+
+            if (!string.IsNullOrEmpty(search))
+            {
+                // Filter diets by search query
+                allDiets = await dietService.SearchDietsAsync(search);
+            }
+            else
+            {
+                // If no search query provided, fetch all diets
+                allDiets = await dietService.AllDietsAsync();
+            }
 
             return View(allDiets);
         }
@@ -72,6 +83,7 @@
 
 
         [HttpGet]
+        [Authorize(Roles = "Coach")]
         public async Task<IActionResult> TrainerDiets()
         {
             // Get the current user's ID

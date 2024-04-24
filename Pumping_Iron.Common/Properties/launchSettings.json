@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Pumping_Iron.Common": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIROMENT": "Production"
+      }
+    }
+  }
+}

@@ -31,7 +31,7 @@
 
             if (model == null)
             {
-                return BadRequest();
+                return View("~/Views/Home/Error500.cshtml");
             }
 
             return View(model);
@@ -70,7 +70,7 @@
             {
                 ModelState.AddModelError(clientId, "Unexpected error occured please try again later!");
             }
-            return BadRequest();
+            return View("~/Views/Home/Error500.cshtml");
         }
 
         [HttpGet]
@@ -106,11 +106,12 @@
             {
                 ModelState.AddModelError(clientId, "Unexpected error occured please try again later!");
             }
-            return BadRequest();
+            return View("~/Views/Home/Error500.cshtml");
         }
 
 
         [HttpGet]
+        [Authorize(Roles = "Coach")]
         public async Task<IActionResult> RemoveProgram(int id, string clientId)
         {
 
@@ -123,10 +124,11 @@
 
             ModelState.AddModelError(clientId, "Unexpected error occured please try again later");
 
-            return StatusCode(StatusCodes.Status500InternalServerError);
+            return View("~/Views/Home/Error500.cshtml");
         }
 
         [HttpGet]
+        [Authorize(Roles = "Coach")]
         public async Task<IActionResult> RemoveDiet(int id, string clientId)
         {
             var removeDiet = await trainerService.RemoveDietFromClientAsync(id, clientId);
@@ -138,7 +140,7 @@
 
             ModelState.AddModelError(clientId, "Unexpected error occured please try again later");
 
-            return StatusCode(StatusCodes.Status500InternalServerError);
+            return View("~/Views/Home/Error500.cshtml");
         }
     }
 }

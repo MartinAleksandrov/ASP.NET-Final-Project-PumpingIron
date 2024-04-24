@@ -5,6 +5,18 @@
 
 <div class="container mt-5">
     <div class="row">
+        <div class="col-md-12 mb-4">
+            <form method="get" action="@Url.Action("AllDiets", "Diet")">
+                <div class="input-group">
+                    <input type="text" name="search" class="form-control" placeholder="Search diets by name">
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-outline-secondary">Search</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <a class="button" asp-area="" asp-controller="Diet" asp-action="AllDiets">All Diets</a>
+
         @foreach (var diet in Model)
         {
             <div class="col-md-6 mb-4">
@@ -15,7 +27,7 @@
                         <p class="card-text">@diet.Description</p>
                     </div>
                     <div class="card-footer">
-                      
+
                         <a href="@Url.Action("Details", "Diet", new { id = diet.Id })" class="btn btn-lg btn-primary rounded-pill">More Details</a>
 
                     </div>

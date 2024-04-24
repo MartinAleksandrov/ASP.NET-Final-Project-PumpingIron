@@ -1,8 +1,17 @@
-﻿@model IEnumerable<AllTrainersViewModel>
+﻿@using Pumping_Iron.Infrastructure.Extensions;
+@using Pumping_Iron.Data.Data;
+@inject PumpingIronDbContext dbContext;
+
+@model IEnumerable<AllTrainersViewModel>
 @{
     ViewBag.Title = "All Trainers";
 }
 
+@{
+
+    var userId = User.GetId();
+    var client = dbContext.Clients.FirstOrDefault(u => u.ClientId.ToString() == userId);
+}
 <h2 class="text-center">@ViewBag.Title</h2>
 <hr />
 
@@ -18,10 +27,13 @@
                         <p class="card-text">Age: @trainer.Age</p>
                         <p class="card-text">Gender: @trainer.Gender</p>
                         <div class="d-flex justify-content-between align-items-center">
-                            <form asp-action="Hire" asp-controller="Client" method="get">
-                                <input type="hidden" name="trainerId" value="@trainer.Id" />
-                                <button type="submit" class="btn btn-lg btn-success rounded-pill">Hire</button>
-                            </form>                   
+                            @if (client == null)
+                            {
+                                <form asp-action="Hire" asp-controller="Client" method="get">
+                                    <input type="hidden" name="trainerId" value="@trainer.Id" />
+                                    <button type="submit" class="btn btn-lg btn-success rounded-pill">Hire</button>
+                                </form>
+                            }                 
                             <a href="@Url.Action("Details", "Trainer", new { id = trainer.Id })" class="btn btn-lg btn-primary rounded-pill">See More</a>
                         </div>
                     </div>

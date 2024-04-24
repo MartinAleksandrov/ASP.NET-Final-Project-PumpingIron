@@ -12,12 +12,12 @@
         <form asp-action="CreateProgram" method="post">
             <div class="mb-3">
                 <label asp-for="@Model.Name" class="form-label-add-edit">Program Name</label>
-                <input asp-for="@Model.Name" class="form-control" aria-required="true" placeholder="Martin" />
+                <input asp-for="@Model.Name" class="form-control" aria-required="true" placeholder="Training Program" />
                 <span asp-validation-for="@Model.Name" class="text-danger"></span>
             </div>
             <div class="mb-3">
                 <label asp-for="@Model.Duration" class="form-label-add-edit">Duration</label>
-                <input asp-for="@Model.Duration" class="form-control" placeholder="30-180 min" />
+                <input asp-for="@Model.Duration" class="form-control" placeholder="30-180 days" />
                 <span asp-validation-for="@Model.Duration" class="text-danger"></span>
             </div>
             <div class="mb-3">

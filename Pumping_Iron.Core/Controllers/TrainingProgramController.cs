@@ -32,7 +32,7 @@
 
             if (model == null)
             {
-                return BadRequest();
+                return View("~/Views/Home/Error500.cshtml");
             }
 
             return View(model);
@@ -72,6 +72,7 @@
         }
 
         [HttpGet]
+        [Authorize(Roles = "Coach")]
         public async Task<IActionResult> TrainerPrograms()
         {
             var userId = User.GetId();
@@ -80,7 +81,7 @@
 
             if (trainingPrograms == null)
             {
-                return BadRequest("Trainer does not exist or error occurred.");
+                return View("~/Views/Home/Error500.cshtml");
             }
 
             return View(trainingPrograms);

@@ -35,7 +35,7 @@
             // Check if clients were successfully retrieved
             if (clients == null)
             {
-                return BadRequest("Trainer does not exist or an error occurred.");
+                return View("~/Views/Home/Error500.cshtml");
             }
 
             // If clients were successfully retrieved, return a View with the clients data
@@ -45,6 +45,7 @@
 
 
         [HttpGet]
+        [Authorize(Roles = "Client")]
         public IActionResult Hire(string trainerId)
         {
             var model = new HireTrainerViewModel()
@@ -55,6 +56,7 @@
         }
 
         [HttpPost]
+        [Authorize(Roles = "Client")]
         public async Task<IActionResult> Hire(HireTrainerViewModel model)
         {
             var clientId = User.GetId();
@@ -67,11 +69,12 @@
                 return RedirectToAction("AllTrainers", "Trainer");
             }
 
-            return BadRequest("Something goes wrong, please try again later");
+            return View("~/Views/Home/Error500.cshtml");
 
         }
 
         [HttpGet]
+        [Authorize(Roles = "Client")]
         public async Task<IActionResult> MyTrainer()
         {
             var userId = User.GetId();
@@ -87,6 +90,7 @@
         }
 
         [HttpGet]
+        [Authorize(Roles = "Client")]
         public async Task<IActionResult> MyDiet()
         {
             var userId = User.GetId();
@@ -102,6 +106,7 @@
         }
 
         [HttpGet]
+        [Authorize(Roles = "Client")]
         public async Task<IActionResult> MyProgram()
         {
             var userId = User.GetId();
@@ -117,6 +122,7 @@
         }
 
         [HttpGet]
+        [Authorize(Roles = "Client")]
         public async Task<IActionResult> RemoveTrainer()
         {
             var userId = User.GetId();
