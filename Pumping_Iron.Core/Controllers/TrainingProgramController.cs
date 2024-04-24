@@ -16,13 +16,21 @@
         }
 
         [HttpGet]
-        [Authorize(Roles ="Client")]
-        public async Task<IActionResult> AllTrainingPrograms()
+        [Authorize(Roles = "Client")]
+        public async Task<IActionResult> AllTrainingPrograms(string search)
         {
             var allTrainingPrograms = await programService.AllTrainingProgramsAsync();
 
+            if (!string.IsNullOrEmpty(search))
+            {
+                allTrainingPrograms = allTrainingPrograms.Where(p =>
+                    p.Name.Contains(search, StringComparison.OrdinalIgnoreCase) ||
+                    p.Description.Contains(search, StringComparison.OrdinalIgnoreCase));
+            }
+
             return View(allTrainingPrograms);
         }
+
 
 
         [HttpGet]

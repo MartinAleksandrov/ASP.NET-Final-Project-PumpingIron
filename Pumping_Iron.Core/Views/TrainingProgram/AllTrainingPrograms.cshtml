@@ -5,6 +5,18 @@
 
 <div class="container mt-5">
     <div class="row">
+        <div class="col-lg-12">
+            <form method="get" action="@Url.Action("AllTrainingPrograms", "TrainingProgram")">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Search by keyword" name="search">
+                    <button class="btn btn-outline-secondary" type="submit">Search</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <a class="button" asp-area="" asp-controller="TrainingProgram" asp-action="AllTrainingPrograms">All Programs</a>
+
+    <div class="row">
         @foreach (var program in Model)
         {
             <div class="col-lg-4 col-md-6 mb-4">
