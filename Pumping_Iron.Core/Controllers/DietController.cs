@@ -39,13 +39,16 @@
         [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
+            // Retrieve diet details by ID asynchronously
             var model = await dietService.GetDetailsByIdAsync(id);
 
+            // If no diet details are found for the given ID, return a BadRequest response
             if (model == null)
             {
                 return BadRequest();
             }
 
+            // If diet details are found, return the view with the model data
             return View(model);
         }
 
